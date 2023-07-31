@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Address extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'cep',
+        'road',
+        'number',
+        'neighborhood',
+        'city',
+        'state'
+    ];
+
+    public function addressable()
+    {
+
+        return $this->morphTo(); 
+    }
+}
