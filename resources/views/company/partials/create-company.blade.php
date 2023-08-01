@@ -12,10 +12,11 @@
 
                 @livewire('company')
                 @livewire('cep')
+
                 <x-primary-button class="mt-4">Cadastrar Empresa</x-primary-button>
             </div>
         </div>
     </form>
 
-  
+
 </x-app-layout>

@@ -15,10 +15,14 @@
 
                     {{$user->company}}<br><br>
 
-                   @livewire('toogle')
+                    @livewire('toggle',[
+                        'user' => $user,
+                        'active' => 'active'
+                    ])
+
 
                 </div>
-                
+
             </div>
         </div>
     </div>

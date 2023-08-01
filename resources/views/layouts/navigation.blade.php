@@ -18,10 +18,10 @@
 
                     @if ( Auth::user()->typeUser == 'gerente')
                     <x-nav-link :href="route('company.edit')" :active="request()->routeIs('company.edit')">
-                        @if (empty($user->company))
+                        @if (!empty($user->company))
                         {{ __('Cadastrar Empresa') }}
                         @else
-                        {{ __('Empresas') }}
+                        {{ __('Empresa') }}
                         @endif
                     </x-nav-link>
 

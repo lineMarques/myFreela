@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('contact');
             $table->string('email');
             $table->string('companyName');
-            $table->text('logo');
             $table->timestamps();
         });
     }

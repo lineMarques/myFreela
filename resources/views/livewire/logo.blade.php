@@ -1,16 +1,18 @@
 <div>
     @php
     $user = Auth::user();
-    $company = $user->company->where('user_id', Auth::id())->first();
+    if ($user->company) {
+         $company = $user->company->where('user_id', Auth::id())->first();
+    }
     @endphp
 
 
 
     <div class="p-4 sm:p-8 bg-white dark:bg-gray-800  sm:rounded-lg">
 
-        <form action="{{ route('company.update') }}" 
-        
-        
+        <form action="{{ route('company.update') }}"
+
+
             @if(!empty($company->image->image))
 
             wire:submit.prevent='updateLogo'
@@ -39,7 +41,7 @@
 
                         @else
 
-                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="img/no-logo.png">
+                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="img/no-logo.jpg">
 
                         @endif
 

@@ -10,18 +10,17 @@ class Company extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+
         'cnpj',
         'contact',
         'email',
         'companyName',
-        'logo',
     ];
 
     public function user()
     {
         return $this->belogsTo(User::class);
-    } 
+    }
 
     public function address(){
 

@@ -10,9 +10,9 @@
 
             <div class="flex p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
 
-                
+
                     @livewire('image')
-                            
+
 
                 <div class="p-6 ml-10n max-w-xl">
                     @include('profile.partials.update-profile-information-form')

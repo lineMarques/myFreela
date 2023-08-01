@@ -23,6 +23,7 @@ class User extends Authenticatable
         'typeUser',
         'contact',
         'password',
+        'active',
     ];
 
     /**
@@ -41,6 +42,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'active' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 

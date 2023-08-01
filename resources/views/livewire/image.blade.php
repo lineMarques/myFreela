@@ -1,20 +1,20 @@
 @php
 $user = Auth::user();
 @endphp
- 
+
 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800  sm:rounded-lg">
 
-    <form action="{{ route('curriculo.update') }}" 
+    <form action="{{ route('curriculo.update') }}"
 
     @if(!empty($user->image->image))
 
-        wire:submit.prevent='updatePhoto' 
+        wire:submit.prevent='updatePhoto'
 
     @else(!empty($user->image->image))
         wire:submit.prevent='storagePhoto'
 
-    @endif 
-    
+    @endif
+
     >
     @method('patch')
         @csrf
@@ -24,14 +24,14 @@ $user = Auth::user();
         <div class="flex items-center justify-center w-full">
             <label for="photo"
                 class="flex flex-col items-center justify-center w-40 h-40 rounded-full cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">                   
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
 
                     @if (!empty($photo))
 
                     <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="{{$photo->temporaryUrl()}}" alt="">
-                    
+
                     @else
-                    
+
                         <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="img/no-photo.png">
 
                     @endif
@@ -40,7 +40,7 @@ $user = Auth::user();
                 <input id="photo" name="photo" type="file" class="hidden" wire:model='photo' />
             </label>
         </div>
-            
+
         @else
             <div class="flex items-center justify-center w-full">
             <label for="photo"
@@ -51,9 +51,9 @@ $user = Auth::user();
                     @if (!empty($photo))
 
                     <img class="w-48 h-48 mb-3 text-gray-400 rounded-full border border-gray-300 border-dashed" src="{{$photo->temporaryUrl()}}" alt="">
-                    
+
                     @else
-                    
+
                     <img class="w-48 h-48 mb-3 text-gray-400 rounded-full" src="{{ url("storage/{$user->image->image}") }}">
 
                     @endif
@@ -63,7 +63,7 @@ $user = Auth::user();
                 <input id="photo" name="photo" type="file" class="hidden" wire:model='photo' />
             </label>
         </div>
-        @endif        
+        @endif
 
         <div class="flex items-center gap-4">
 
