@@ -33,6 +33,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
+
         return view('livewire.dashboard');
     }
 
@@ -74,6 +75,7 @@ class CompanyController extends Controller
     {
         $user = $this->user->find(Auth::id());
         $company = $this->company::where('user_id', Auth::id())->latest()->first();
+
         return view('livewire.dashboard', compact('user'));
     }
 
@@ -87,7 +89,7 @@ class CompanyController extends Controller
     {
         $user = $request->user();
         $company = $this->company->where('user_id', $user->id)->first();
-       
+
         if(empty($user->company)){
             return Redirect::route('company.create');
         }else{
@@ -104,9 +106,9 @@ class CompanyController extends Controller
      */
     public function update(Request $request)
     {
-        $company = $this->company->where('user_id', Auth::id())->first();        
+        $company = $this->company->where('user_id', Auth::id())->first();
         $company->update($request->all());
-        $company->address->update($request->all());        
+        $company->address->update($request->all());
 
         return Redirect::route('company.edit', compact('company'))->with('status', 'company-updated');
     }

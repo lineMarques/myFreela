@@ -32,6 +32,11 @@ class Company extends Model
         return $this->morphOne(Image::class,'imageable');
     }
 
+    public function freelas()
+    {
+        return $this->hasMany(Freela::class);
+    }
+
 }
 
 

@@ -22,13 +22,13 @@ class Image extends Component
         ]);
 
         $user = Auth::user();
-        
+
         $nameFile = Str::slug($user->userName) . '.' . $this->photo->extension();
 
         if ($photo = $this->photo->storeAs('users', $nameFile)) {
-            
+
             $user->image()->create([
-                
+
                 'image' => $photo,
 
             ]);

@@ -36,7 +36,7 @@
             <label for="skills" name="skills[]" value="test">skills5</label>
             <x-input-error :messages="$errors->get('skills')" class="mt-2" />
         </div>
-    
+
         <x-primary-button class="mt-4">Atualizar</x-primary-button>
     </form>
 </section>

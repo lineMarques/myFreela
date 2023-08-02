@@ -58,7 +58,7 @@
                 <div class="bg-slate-100 rounded-t">
                     <span >{{$institution['nome_da_ies']}}</span><br>
                 </div>
-                
+
             @endforeach
         @endif
 

@@ -15,13 +15,13 @@ class Logo extends Component
     use WithFileUploads;
 
     public $logo;
-    
+
     public function storageLogo()
     {
         $this->validate([
             'logo' => 'required|image|max:1024'
         ]);
-        
+
         $company = Company::where('user_id', Auth::id())->first();
 
         $nameFile = Str::slug($company->companyName) . '.' . $this->logo->extension();
@@ -50,6 +50,7 @@ class Logo extends Component
 
         if ($logo = $this->logo->storeAs('companys', $nameFile)) {
 
+            $company = $company->image()->where('imageable_id', $company->id)->first();
             $company->update($request->all());
         };
 

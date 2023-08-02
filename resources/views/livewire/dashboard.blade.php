@@ -15,10 +15,13 @@
 
                     {{$user->company}}<br><br>
 
+                    @if ($user->personalData)
                     @livewire('toggle',[
                         'user' => $user,
                         'active' => 'active'
                     ])
+                    @endif
+
 
 
                 </div>
