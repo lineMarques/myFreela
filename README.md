@@ -26,7 +26,13 @@ POSTGRES_USER= ?
 POSTGRES_PASSWORD= ?
 POSTGRES_PORT= ?
 POSTGRES_ENTRYPOINT_INITDB=./postgres/docker-entrypoint-initdb.d
-'''
+
+
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 
 Subir os containers
 
