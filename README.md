@@ -1,12 +1,15 @@
 laradock
 
 Clonar projeto
+
 git clone https://github.com/lineMarques/myFreela.git
 
 Clonar laradock dentro do projeto
+
 git clone https://github.com/Laradock/laradock.git
 
 Copiar o arquivo .env.example
+
 cp .env.example .env
 
 Abrir .env configurar versão PHP, stgres e o nome do projeto
@@ -24,6 +27,7 @@ POSTGRES_PORT= ?
 POSTGRES_ENTRYPOINT_INITDB=./postgres/docker-entrypoint-initdb.d
 
 Subir os containers
+
 docker-compose up -d nginx postgres
 
 Entrar no projeto pelo docker
@@ -31,10 +35,13 @@ Entrar no projeto pelo docker
 docker exec -it myfreela_workspace_1 bash
 
 composer install
+
 npm install
 
 composer require livewire/livewire
+
 composer require laravel/breeze --dev
+
 composer require laravellegends/pt-br-validator
 
 
@@ -48,4 +55,5 @@ DB_USERNAME= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 DB_PASSWORD= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 
 php artisa migrate
+
 php artisan storage:link
