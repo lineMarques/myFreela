@@ -30,10 +30,6 @@ Entrar no projeto pelo docker
 
 docker exec -it myfreela_workspace_1 bash
 
-Clonar projeto
-https://github.com/lineMarques/myFreela.git
-
-
 composer install
 npm install
 
