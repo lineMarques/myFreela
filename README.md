@@ -21,6 +21,7 @@ cp .env.example .env
 **Abrir .env configurar versão PHP, stgres e o nome do projeto**
 
 ```
+gedit .env
 COMPOSE_PROJECT_NAME=myFreela
 ```
 
