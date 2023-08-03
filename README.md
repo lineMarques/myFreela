@@ -1,10 +1,10 @@
 laradock
 
-Clonar projeto
+**Clonar projeto**
 
 git clone https://github.com/lineMarques/myFreela.git
 
-Clonar laradock dentro do projeto
+**Clonar laradock dentro do projeto**
 
 git clone https://github.com/Laradock/laradock.git
 
@@ -19,15 +19,10 @@ COMPOSE_PROJECT_NAME=myFreela
 PHP_VERSION=8.1
 
 POSTGRES_VERSION=alpine
-
 POSTGRES_CLIENT_VERSION=15
-
 POSTGRES_DB= ?
-
 POSTGRES_USER= ?
-
 POSTGRES_PASSWORD= ?
-
 POSTGRES_PORT= ?
 
 POSTGRES_ENTRYPOINT_INITDB=./postgres/docker-entrypoint-initdb.d
@@ -54,15 +49,10 @@ composer require laravellegends/pt-br-validator
 Configurar .env Laravel
 
 DB_CONNECTION=pgsql
-
 DB_HOST=postgres
-
 DB_PORT= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
-
 DB_DATABASE= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
-
 DB_USERNAME= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
-
 DB_PASSWORD= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 
 
