@@ -1,8 +1,10 @@
 laradock
 
+Clonar projeto
+git clone https://github.com/lineMarques/myFreela.git
+
 Clonar laradock dentro do projeto
 git clone https://github.com/Laradock/laradock.git
-
 
 Copiar o arquivo .env.example
 cp .env.example .env
