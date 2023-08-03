@@ -22,7 +22,7 @@ cp .env.example .env
 
 ```
 gedit .env
-COMPOSE_PROJECT_NAME=myFreela
+36- COMPOSE_PROJECT_NAME=myFreela
 ```
 
 ```
