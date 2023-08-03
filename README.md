@@ -18,13 +18,15 @@ COMPOSE_PROJECT_NAME=myFreela
 
 PHP_VERSION=8.1
 
-'''POSTGRES_VERSION=alpine
+'''
+POSTGRES_VERSION=alpine
 POSTGRES_CLIENT_VERSION=15
 POSTGRES_DB= ?
 POSTGRES_USER= ?
 POSTGRES_PASSWORD= ?
 POSTGRES_PORT= ?
-POSTGRES_ENTRYPOINT_INITDB=./postgres/docker-entrypoint-initdb.d'''
+POSTGRES_ENTRYPOINT_INITDB=./postgres/docker-entrypoint-initdb.d
+'''
 
 Subir os containers
 
