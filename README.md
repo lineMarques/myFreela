@@ -13,8 +13,10 @@ git clone https://github.com/Laradock/laradock.git
 
 **Copiar o arquivo .env.example**
 
+```
+cd laradock
 cp .env.example .env
-
+```
 
 **Abrir .env configurar versão PHP, stgres e o nome do projeto**
 
