@@ -39,7 +39,7 @@ gedit .env
 476- POSTGRES_ENTRYPOINT_INITDB=./postgres/docker-entrypoint-initdb.d
 ```
 
-**Subir os containers**
+**Subir os containers dentro do diretório laradock**
 
 docker-compose up -d nginx postgres
 
@@ -54,7 +54,7 @@ cp laravel.conf.example laravel.conf
 20- index index.php index.html index.htm;
 ```
 
-**Incluir essa linha no arquivo hosts do seu pc, se for linux o arquivo se encontra na pasta /etc**
+**Incluir essa linha no arquivo hosts do seu pc, se for linux o arquivo se encontra na diretório /etc**
 
 ```
 127.0.0.1	myFreela.test
@@ -74,6 +74,11 @@ composer require livewire/livewire
 composer require laravel/breeze --dev
 composer require laravellegends/pt-br-validator
 ```
+**Copiar o arquivo .env.example do projeto laravel**
+
+```
+cp .env.example .env
+```
 
 **Configurar .env Laravel**
 
@@ -89,6 +94,6 @@ DB_PASSWORD= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 ```
 sudo chmod -R 777 storage bootstrap/cache
 php artisan key:generate
-php artisa migrate
+php artisan migrate
 php artisan storage:link
 ```
