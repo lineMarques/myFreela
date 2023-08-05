@@ -31,7 +31,7 @@ cp .env.example .env
 **Abrir .env configurar versão PHP, stgres e o nome do projeto**
 
 ```
-gedit .env
+nano .env
 36- COMPOSE_PROJECT_NAME=myFreela
 ```
 
@@ -60,7 +60,7 @@ docker-compose up -d nginx postgres
 ```
 cd nginx/sites
 cp laravel.conf.example laravel.conf
-gedit laravel.conf
+nano laravel.conf
 
 18- server_name myFreela.test;
 19- root /var/www/myFreela/public;
@@ -122,7 +122,7 @@ php artisan storage:link
 
 ```
 cd vendor/laravellegends/pt-br-validator/src/pt-br-validator/Rules
-gedit FormatoCep.php
+nano FormatoCep.php
 
 22- public function passes($attribute, $value)
    {
