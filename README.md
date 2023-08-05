@@ -118,13 +118,13 @@ php artisan migrate
 php artisan storage:link
 ```
 
-**Mudar formato do cep no arquivo de formatação do cep**
+**Substituir a função ***passes*****
 
 ```
 cd vendor/laravellegends/pt-br-validator/src/pt-br-validator/Rules
 nano FormatoCep.php
 
-22- public function passes($attribute, $value)
+public function passes($attribute, $value)
    {
         return preg_match('/^\d{2}\.?\d{3}\d{3}$/', $value) > 0;
     }
