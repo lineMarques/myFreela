@@ -51,7 +51,9 @@ gedit .env
 
 **Subir os containers dentro do diretório laradock**
 
+```
 docker-compose up -d nginx postgres
+```
 
 **Configurar o arquivo laravel.conf do nginx**
 
@@ -72,8 +74,9 @@ cp laravel.conf.example laravel.conf
 
 **Entrar no projeto pelo docker**
 
+```
 docker exec -it myfreela_workspace_1 bash
-
+```
 
 **Digitar os comandos**
 
