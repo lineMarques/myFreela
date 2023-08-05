@@ -59,7 +59,8 @@ docker-compose up -d nginx postgres
 
 ```
 cd nginx/sites
-cp laravel.conf.example laravel.conf 
+cp laravel.conf.example laravel.conf
+gedit laravel.conf
 
 18- server_name myFreela.test;
 19- root /var/www/myFreela/public;
