@@ -15,7 +15,7 @@ https://www.docker.com/get-started/
 git clone https://github.com/lineMarques/myFreela.git
 ```
 
-**Clonar laradock**
+**Clonar laradock no mesmo diretório**
 
 ```
 git clone https://github.com/Laradock/laradock.git
