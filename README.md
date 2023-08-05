@@ -91,9 +91,24 @@ DB_USERNAME= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 DB_PASSWORD= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 ```
 
+**Dar permissões,gerar key, migrar as tabelas para o banco e criar um link símbolico do diretório /storage para o diretório /public**
+
 ```
 sudo chmod -R 777 storage bootstrap/cache
 php artisan key:generate
 php artisan migrate
 php artisan storage:link
 ```
+
+**Mudar formato do cep no arquivo de formatação do cep**
+
+```
+cd vendor/laravellegends/pt-br-validator/src/pt-br-validator/Rules
+gedit FormatoCep.php
+
+22- public function passes($attribute, $value)
+   {
+        return preg_match('/^\d{2}\.?\d{3}\d{3}$/', $value) > 0;
+    }
+```
+
