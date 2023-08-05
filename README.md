@@ -1,15 +1,25 @@
+É preciso ter docker instalado.
+
+```
+https://www.docker.com/get-started/
+```
+
+
 **Docker com Laradock**
+
+
 
 **Clonar projeto**
 
+```
 git clone https://github.com/lineMarques/myFreela.git
-
+```
 
 **Clonar laradock**
 
+```
 git clone https://github.com/Laradock/laradock.git
-
-
+```
 
 **Copiar o arquivo .env.example do laradock**
 
