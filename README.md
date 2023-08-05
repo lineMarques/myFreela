@@ -66,7 +66,7 @@ cp laravel.conf.example laravel.conf
 20- index index.php index.html index.htm;
 ```
 
-**Incluir essa linha no arquivo hosts do seu pc, se for linux o arquivo se encontra na diretório /etc**
+**Incluir essa linha no arquivo hosts do seu pc, se for linux o arquivo se encontra na diretório /etc. Se for windows o caminho é C:\Windows\System32\drivers\etc**
 
 ```
 127.0.0.1	myFreela.test
