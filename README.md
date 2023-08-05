@@ -76,7 +76,7 @@ gedit laravel.conf
 **Entrar no projeto pelo docker**
 
 ```
-docker exec -it myfreela_workspace_1 bash
+sudo docker exec -it myfreela_workspace_1 bash
 ```
 
 **Digitar os comandos**
