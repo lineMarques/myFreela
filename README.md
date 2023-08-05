@@ -77,6 +77,7 @@ gedit laravel.conf
 
 ```
 sudo docker exec -it myfreela_workspace_1 bash
+cd myFreela
 ```
 
 **Digitar os comandos**
