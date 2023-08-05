@@ -112,7 +112,7 @@ FILESYSTEM_DISK=public
 **Dar permissões,gerar key, migrar as tabelas para o banco e criar um link símbolico do diretório /storage para o diretório /public**
 
 ```
-sudo chmod -R 777 storage bootstrap/cache
+chmod -R 777 storage bootstrap/cache
 php artisan key:generate
 php artisan migrate
 php artisan storage:link
