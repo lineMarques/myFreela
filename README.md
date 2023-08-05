@@ -80,7 +80,7 @@ composer require laravellegends/pt-br-validator
 cp .env.example .env
 ```
 
-**Configurar .env Laravel**
+**Configurar .env Laravel conexão como banco de dados postgres e setar a forma de armazenar as imagens**
 
 ```
 DB_CONNECTION=pgsql
@@ -89,6 +89,8 @@ DB_PORT= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 DB_DATABASE= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 DB_USERNAME= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
 DB_PASSWORD= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
+
+FILESYSTEM_DISK=public
 ```
 
 **Dar permissões,gerar key, migrar as tabelas para o banco e criar um link símbolico do diretório /storage para o diretório /public**
