@@ -93,6 +93,7 @@ composer require laravellegends/pt-br-validator
 
 ```
 cp .env.example .env
+gedit .env
 ```
 
 **Configurar .env Laravel conexão como banco de dados postgres e setar a forma de armazenar as imagens**
