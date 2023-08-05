@@ -80,7 +80,7 @@ sudo docker exec -it myfreela_workspace_1 bash
 cd myFreela
 ```
 
-**Digitar os comandos**
+**No docker, dentro do diretório do projeto, digitar os comandos**
 
 ```
 npm install
@@ -89,6 +89,7 @@ composer require livewire/livewire
 composer require laravel/breeze --dev
 composer require laravellegends/pt-br-validator
 ```
+
 **Copiar o arquivo .env.example do projeto laravel**
 
 ```
@@ -129,4 +130,37 @@ public function passes($attribute, $value)
         return preg_match('/^\d{2}\.?\d{3}\d{3}$/', $value) > 0;
     }
 ```
+
+**Acrescentar server no arquivo vite.config.js**
+
+```
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: ["resources/css/app.css", "resources/js/app.js"],
+            refresh: true,
+        }),
+    ],
+
+    **server: {
+        host: "0.0.0.0",
+        hmr: {
+            host: "localhost",
+        },
+    },**
+});
+```
+
+**Ainda dentro do docker, no diretório do projeto, inicie o server**
+
+```
+npm run server
+```
+
+**Entre no browser**
+
+```
+http://myfreela.test/
+```
+
 
