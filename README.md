@@ -131,7 +131,7 @@ public function passes($attribute, $value)
     }
 ```
 
-**Acrescentar server no arquivo vite.config.js**
+**Incluir server no arquivo vite.config.js **
 
 ```
 export default defineConfig({
@@ -142,12 +142,12 @@ export default defineConfig({
         }),
     ],
 
-    **server: {
+   _ server: {
         host: "0.0.0.0",
         hmr: {
             host: "localhost",
         },
-    },**
+    },_
 });
 ```
 
