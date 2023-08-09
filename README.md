@@ -134,21 +134,12 @@ public function passes($attribute, $value)
 **Incluir server no arquivo vite.config.js **
 
 ```
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: ["resources/css/app.css", "resources/js/app.js"],
-            refresh: true,
-        }),
-    ],
-
-   _ server: {
+    server: {
         host: "0.0.0.0",
         hmr: {
             host: "localhost",
         },
-    },_
-});
+    }
 ```
 
 **Ainda dentro do docker, no diretório do projeto, inicie o server**
