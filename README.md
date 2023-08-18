@@ -39,7 +39,7 @@ nano .env
 42- PHP_VERSION=8.1
 ```
 
-```
+```docker
 470- POSTGRES_VERSION=alpine
 471- POSTGRES_CLIENT_VERSION=15
 472- POSTGRES_DB= ESCOLHER UM NOME PARA O BANCO
@@ -82,7 +82,7 @@ cd myFreela
 
 **No docker, dentro do diretório do projeto, digitar os comandos**
 
-```php
+```laravel
 npm install
 composer install
 composer require livewire/livewire
