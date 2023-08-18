@@ -1,6 +1,6 @@
 É preciso ter docker instalado.
 
-```url
+```
 https://www.docker.com/get-started/
 ```
 
@@ -11,19 +11,19 @@ https://www.docker.com/get-started/
 
 **Clonar projeto**
 
-```php
+```
 git clone https://github.com/lineMarques/myFreela.git
 ```
 
 **Clonar laradock no mesmo diretório**
 
-```php
+```
 git clone https://github.com/Laradock/laradock.git
 ```
 
 **Copiar o arquivo .env.example do laradock**
 
-```php
+```
 cd laradock
 cp .env.example .env
 ```
@@ -51,7 +51,7 @@ nano .env
 
 **Subir os containers dentro do diretório laradock**
 
-```php
+```docker
 docker-compose up -d nginx postgres
 ```
 
@@ -75,7 +75,7 @@ nano laravel.conf
 
 **Entrar no projeto pelo docker**
 
-```php
+```
 sudo docker exec -it myfreela_workspace_1 bash
 cd myFreela
 ```
@@ -92,7 +92,7 @@ composer require laravellegends/pt-br-validator
 
 **Copiar o arquivo .env.example do projeto laravel**
 
-```php
+```
 cp .env.example .env
 nano .env
 ```
@@ -144,13 +144,13 @@ public function passes($attribute, $value)
 
 **Ainda dentro do docker, no diretório do projeto, inicie o server**
 
-```php
+```
 npm run server
 ```
 
 **Entre no browser**
 
-```php
+```
 http://myfreela.test/
 ```
 
