@@ -82,7 +82,7 @@ cd myFreela
 
 **No docker, dentro do diretório do projeto, digitar os comandos**
 
-```
+```php
 npm install
 composer install
 composer require livewire/livewire
@@ -133,7 +133,7 @@ public function passes($attribute, $value)
 
 **Incluir server no arquivo vite.config.js **
 
-```
+```json
     server: {
         host: "0.0.0.0",
         hmr: {
@@ -144,7 +144,7 @@ public function passes($attribute, $value)
 
 **Ainda dentro do docker, no diretório do projeto, inicie o server**
 
-```
+```php
 npm run server
 ```
 
