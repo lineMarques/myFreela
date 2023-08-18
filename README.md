@@ -17,29 +17,29 @@ git clone https://github.com/lineMarques/myFreela.git
 
 **Clonar laradock no mesmo diretório**
 
-```
+```php
 git clone https://github.com/Laradock/laradock.git
 ```
 
 **Copiar o arquivo .env.example do laradock**
 
-```
+```php
 cd laradock
 cp .env.example .env
 ```
 
 **Abrir .env configurar versão PHP, stgres e o nome do projeto**
 
-```
+```php
 nano .env
 36- COMPOSE_PROJECT_NAME=myFreela
 ```
 
-```
+```php
 42- PHP_VERSION=8.1
 ```
 
-```docker
+```php
 470- POSTGRES_VERSION=alpine
 471- POSTGRES_CLIENT_VERSION=15
 472- POSTGRES_DB= ESCOLHER UM NOME PARA O BANCO
