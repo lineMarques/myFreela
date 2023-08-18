@@ -82,7 +82,7 @@ cd myFreela
 
 **No docker, dentro do diretório do projeto, digitar os comandos**
 
-```
+```php
 npm install
 composer install
 composer require livewire/livewire
