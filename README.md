@@ -82,7 +82,7 @@ cd myFreela
 
 **No docker, dentro do diretório do projeto, digitar os comandos**
 
-```php
+```
 npm install
 composer install
 composer require livewire/livewire
@@ -121,7 +121,7 @@ php artisan storage:link
 
 **Substituir a função ***passes*****
 
-```
+```php
 cd vendor/laravellegends/pt-br-validator/src/pt-br-validator/Rules
 nano FormatoCep.php
 
