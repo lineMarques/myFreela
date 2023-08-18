@@ -11,7 +11,7 @@ https://www.docker.com/get-started/
 
 **Clonar projeto**
 
-```linux
+```bash
 git clone https://github.com/lineMarques/myFreela.git
 ```
 
