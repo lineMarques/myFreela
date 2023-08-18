@@ -1,6 +1,6 @@
 É preciso ter docker instalado.
 
-```php
+```url
 https://www.docker.com/get-started/
 ```
 
@@ -11,7 +11,7 @@ https://www.docker.com/get-started/
 
 **Clonar projeto**
 
-```bash
+```php
 git clone https://github.com/lineMarques/myFreela.git
 ```
 
