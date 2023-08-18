@@ -1,6 +1,6 @@
 É preciso ter docker instalado.
 
-```
+```php
 https://www.docker.com/get-started/
 ```
 
@@ -11,7 +11,7 @@ https://www.docker.com/get-started/
 
 **Clonar projeto**
 
-```
+```php
 git clone https://github.com/lineMarques/myFreela.git
 ```
 
@@ -51,13 +51,13 @@ nano .env
 
 **Subir os containers dentro do diretório laradock**
 
-```
+```php
 docker-compose up -d nginx postgres
 ```
 
 **Configurar o arquivo laravel.conf do nginx**
 
-```
+```php
 cd nginx/sites
 cp laravel.conf.example laravel.conf
 nano laravel.conf
@@ -69,20 +69,20 @@ nano laravel.conf
 
 **Incluir essa linha no arquivo hosts do seu pc, se for linux o arquivo se encontra na diretório /etc. Se for windows o caminho é C:\Windows\System32\drivers\etc**
 
-```
+```php
 127.0.0.1	myFreela.test
 ```
 
 **Entrar no projeto pelo docker**
 
-```
+```php
 sudo docker exec -it myfreela_workspace_1 bash
 cd myFreela
 ```
 
 **No docker, dentro do diretório do projeto, digitar os comandos**
 
-```laravel
+```php
 npm install
 composer install
 composer require livewire/livewire
@@ -92,14 +92,14 @@ composer require laravellegends/pt-br-validator
 
 **Copiar o arquivo .env.example do projeto laravel**
 
-```
+```php
 cp .env.example .env
 nano .env
 ```
 
 **Configurar .env Laravel conexão como banco de dados postgres e setar a forma de armazenar as imagens**
 
-```
+```php
 DB_CONNECTION=pgsql
 DB_HOST=postgres
 DB_PORT= O MESMO QUE FOI CONFIGURADO NO .ENV DO DOCKER
@@ -112,7 +112,7 @@ FILESYSTEM_DISK=public
 
 **Dar permissões,gerar key, migrar as tabelas para o banco e criar um link símbolico do diretório /storage para o diretório /public**
 
-```
+```php
 chmod -R 777 storage bootstrap/cache
 php artisan key:generate
 php artisan migrate
@@ -150,7 +150,7 @@ npm run server
 
 **Entre no browser**
 
-```
+```php
 http://myfreela.test/
 ```
 
