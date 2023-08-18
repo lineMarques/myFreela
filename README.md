@@ -133,7 +133,7 @@ public function passes($attribute, $value)
 
 **Incluir server no arquivo vite.config.js **
 
-```json
+```php
     server: {
         host: "0.0.0.0",
         hmr: {
