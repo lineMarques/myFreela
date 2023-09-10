@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Curriculo;
 
 use App\Models\Institution;
 use Livewire\Component;
@@ -14,7 +14,7 @@ class AboutMe extends Component
     public function mount()
     {
         $this->query = '';
-        $this->institutions = [];        
+        $this->institutions = [];
     }
 
     public function updatedQuery(){

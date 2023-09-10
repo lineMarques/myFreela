@@ -29,19 +29,17 @@
             @if (empty($company->image->image))
 
 
-
             <div class="flex items-center justify-center w-full">
                 <label for="logo"
                     class="flex flex-col items-center justify-center w-40 h-40 rounded-full cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700  dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
-
                         @if (!empty($logo))
 
                         <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="{{$logo->temporaryUrl()}}" alt="">
 
                         @else
 
-                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="img/no-logo.jpg">
+                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="..public/img/no-logo.jpg">
 
                         @endif
 

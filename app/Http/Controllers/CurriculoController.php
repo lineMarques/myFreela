@@ -48,7 +48,6 @@ class CurriculoController extends Controller
     public function store(CurriculoUpdateRequest $request): RedirectResponse
     {
         $user = $this->user->find(Auth::id());
-
         $user->personalData()->create($request->all());
         $user->address()->create($request->all());
         $user->aboutMe()->create($request->all());

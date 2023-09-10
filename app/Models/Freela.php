@@ -10,8 +10,8 @@ class Freela extends Model
     use HasFactory;
 
     protected $fillable = [
-        'dataInicial',
-        'horaInicial',
+        'dataFreela',
+        'horaInicio',
         'horaFinal',
         'cargo',
         'observacao',

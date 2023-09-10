@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     ProfileController
 };
 use App\Http\Livewire\Company;
+use App\Http\Livewire\Company\Company as CompanyCompany;
 use App\Http\Livewire\PersonalData;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [Company::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [CompanyCompany::class, 'index'])->name('dashboard');
     Route::get('/cadastrarEmpresa', [CompanyController::class, 'create'])->name('company.create');
     Route::post('/empresa', [CompanyController::class, 'store'])->name('company.store');
     Route::get('/empresa', [CompanyController::class, 'edit'])->name('company.edit');
@@ -51,7 +52,12 @@ Route::middleware('auth')->group(function () {
 /* Routes Freelance */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/cadastrarFreela', [FreelaController::class, 'create'])->name('freela.create');
+
+    Route::get('/cadastrarFreela', function () {
+        return view('freela.partials.create-freela-form');
+    })->name('freela.create');
+    
+    /*  Route::get('/cadastrarFreela', [Live::cla   s, 'create'])->name('freela.create'); */
     Route::post('/freela', [FreelaController::class, 'store'])->name('freela.store');
     Route::get('/freela', [FreelaController::class, 'edit'])->name('freela.edit');
     Route::patch('/freela', [FreelaController::class, 'update'])->name('freela.update');

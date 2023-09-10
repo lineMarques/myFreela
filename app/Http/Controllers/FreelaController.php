@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FreelaController extends Controller
 {
-      /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $user;
+    protected $company;
+
+    public function __construct(User $user, Company $company)
     {
-        //
+        $this->user = $user;
+        $this->company = $company;
     }
 
     /**
@@ -23,19 +25,17 @@ class FreelaController extends Controller
      */
     public function create()
     {
-        //
+        return view('freela.partials.create-freela-form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $user = $this->user->find(Auth::id());
+        $company = $user->company;
+        dd($request->all());
+        $company->freelas()->create($request->all());
     }
+
 
     /**
      * Display the specified resource.

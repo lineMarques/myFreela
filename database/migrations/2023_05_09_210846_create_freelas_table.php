@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('freelas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained('companies');
-            $table->date('dataInicial');
+            $table->string('dataFreela');
             $table->time('horaInicio');
             $table->time('horaFinal');
             $table->string('cargo');
             $table->string('observacao');
             $table->string('valorFreela');
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

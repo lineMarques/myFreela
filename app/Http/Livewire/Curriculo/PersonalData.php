@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Curriculo;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -31,7 +31,7 @@ class PersonalData extends Component
         };
     }
 
-    
+
     public function render()
     {
         return view('livewire.curriculo.personal-data');

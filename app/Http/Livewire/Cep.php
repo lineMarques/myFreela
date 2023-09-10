@@ -52,7 +52,7 @@ class Cep extends Component
             $this->data['state'] = $response['uf'];
         };
 
-      
+
     }
 
     public function render()

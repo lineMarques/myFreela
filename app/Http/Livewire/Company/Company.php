@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Company ;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +14,9 @@ class Company extends Component
         $user = Auth::user();
         return view('livewire.dashboard', compact('user'));
     }
-    
+
     public function render()
     {
-        return view('livewire.company.company');
+        return view('livewire.companys.company');
     }
 }

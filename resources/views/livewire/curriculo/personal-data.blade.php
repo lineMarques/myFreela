@@ -4,16 +4,18 @@
             Dados Pessoais
         </h2>
     </header>
+    
 
     <div class="grid grid-cols-3 ">
-        
+
+
         <div class="mt-4 col-span-2">
             <x-input-label for="name" :value="__('Nome Completo')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required
                 autofocus autocomplete="name" />
 
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </div>       
+        </div>
 
     </div>
 

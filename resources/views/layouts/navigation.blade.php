@@ -25,6 +25,7 @@
                         @endif
                     </x-nav-link>
 
+
                     <x-nav-link :href="route('curriculo.edit')" :active="request()->routeIs('curriculo.edit')">
                         {{ __('Meu Currículo') }}
 
@@ -49,13 +50,18 @@
                 @php
                 $user = Auth::user();
                 @endphp
+
+               
+
                 @if (empty($user->image->image))
                 <img class="w-12 h-12 mb-3 text-gray-400 rounded-full m-3" src="img/no-photo.png"
                     alt="{{$user->userName}}">
                 @else
-                <img class="w-12 h-12 mb-3 text-gray-400 rounded-full m-3" src="{{ url("storage/{$user->image->image}") }}"
+                <img class="w-12 h-12 mb-3 text-gray-400 rounded-full m-3" src="{{ url("storage/{$user->image->image}")
+                }}"
                 alt="{{$user->userName}}">
                 @endif
+
 
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

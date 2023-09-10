@@ -18,6 +18,7 @@ class Logo extends Component
 
     public function storageLogo()
     {
+
         $this->validate([
             'logo' => 'required|image|max:1024'
         ]);
@@ -41,6 +42,8 @@ class Logo extends Component
 
     public function updateLogo(Request $request)
     {
+
+
         $this->validate([
             'logo' => 'required|image|max:1024'
         ]);
@@ -49,6 +52,8 @@ class Logo extends Component
         $nameFile = Str::slug($company->companyName) . '.' . $this->logo->extension();
 
         if ($logo = $this->logo->storeAs('companys', $nameFile)) {
+
+
 
             $company = $company->image()->where('imageable_id', $company->id)->first();
             $company->update($request->all());
