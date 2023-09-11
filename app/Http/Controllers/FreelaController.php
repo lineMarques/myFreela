@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Freela;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class FreelaController extends Controller
 {
     protected $user;
     protected $company;
+    protected $freela;
 
-    public function __construct(User $user, Company $company)
+    public function __construct(User $user, Company $company, Freela $freela)
     {
         $this->user = $user;
         $this->company = $company;
+        $this->freela = $freela;
     }
 
     /**
@@ -32,8 +37,9 @@ class FreelaController extends Controller
     {
         $user = $this->user->find(Auth::id());
         $company = $user->company;
-        dd($request->all());
         $company->freelas()->create($request->all());
+
+        return Redirect::route('dashboard');
     }
 
 
@@ -45,7 +51,6 @@ class FreelaController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -56,7 +61,8 @@ class FreelaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $freela = $this->freela->find($id);
+        return view('freela.edit-freela', compact('freela'));
     }
 
     /**
@@ -66,9 +72,12 @@ class FreelaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $freela = $this->freela->find($id);
+        $freela->update($request->all());
+        return Redirect::route('freela.update', $id)->with('status', 'freelaUpdated');
+
     }
 
     /**

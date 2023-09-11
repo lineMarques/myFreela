@@ -53,14 +53,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/cadastrarFreela', function () {
-        return view('freela.partials.create-freela-form');
-    })->name('freela.create');
-    
-    /*  Route::get('/cadastrarFreela', [Live::cla   s, 'create'])->name('freela.create'); */
+    Route::get('/cadastrarFreela', [FreelaController::class, 'create'])->name('freela.create');
     Route::post('/freela', [FreelaController::class, 'store'])->name('freela.store');
-    Route::get('/freela', [FreelaController::class, 'edit'])->name('freela.edit');
-    Route::patch('/freela', [FreelaController::class, 'update'])->name('freela.update');
+    Route::get('/freela/{id}', [FreelaController::class, 'edit'])->name('freela.edit');
+    Route::patch('/freela/{id}', [FreelaController::class, 'update'])->name('freela.update');
     Route::delete('/freela', [FreelaController::class, 'destroy'])->name('freela.destroy');
 });
 

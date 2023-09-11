@@ -20,7 +20,7 @@
                 <div class="max-w-xl">
 
                     @include('freela.partials.delete-freela-form')
-                    
+
                 </div>
             </div>
 
