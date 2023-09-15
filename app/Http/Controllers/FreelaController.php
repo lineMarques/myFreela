@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Freela;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Redirect;
 
 class FreelaController extends Controller
@@ -21,6 +23,14 @@ class FreelaController extends Controller
         $this->user = $user;
         $this->company = $company;
         $this->freela = $freela;
+    }
+    public function index()
+    {
+        $freelas = $this->freela
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
+        return view('livewire.dashboard', compact('freelas'));
     }
 
     /**
@@ -40,17 +50,6 @@ class FreelaController extends Controller
         $company->freelas()->create($request->all());
 
         return Redirect::route('dashboard');
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
     }
 
     /**
@@ -77,7 +76,6 @@ class FreelaController extends Controller
         $freela = $this->freela->find($id);
         $freela->update($request->all());
         return Redirect::route('freela.update', $id)->with('status', 'freelaUpdated');
-
     }
 
     /**
@@ -86,8 +84,15 @@ class FreelaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current-password'],
+        ]);
+
+        $freela = $this->freela->find($id);
+        $freela->delete();
+
+        return Redirect::to('/dashboard');
     }
 }

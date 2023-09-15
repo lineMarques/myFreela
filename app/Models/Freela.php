@@ -21,6 +21,7 @@ class Freela extends Model
 
     protected $casts = [
         'status' => 'boolean',
+        /* 'dataFreela' => 'datetime', */
     ];
 
     public function company()

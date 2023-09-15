@@ -15,25 +15,26 @@
             <textarea
                 class="w-full block font-medium text-sm text-gray-700 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
                 name="aboutMe" id="aboutMe">{{$user->aboutMe->aboutMe}}</textarea>
-                <x-input-error :messages="$errors->get('aboutMe')" class="mt-2" />
+            <x-input-error :messages="$errors->get('aboutMe')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-input-label for="aboutMe" :value="__('Marque aqui de 3  a 5 qualificações.')" />
-            <x-checkbox id="skills" name="skills[]" type="checkbox" value="1"/>
-            <label for="skills">skills</label>
 
-            <x-checkbox id="skills" name="skills[]" type="checkbox" value="2"/>
-            <label for="skills" name="skills[]">skills2</label>
+            @foreach ($user->aboutMe->skills as $skill)
+                <div class="flex flex-col">
+                    {{$skill}}
+                </div>
+            @endforeach
+            <x-input-label for="aboutMe" :value="__('Atualize aqui suas skills')" />
 
-            <x-checkbox id="skills" name="skills[]" type="checkbox" value="3"/>
-            <label for="skills" name="skills[]" value="test">skills3</label>
+            <div>
+                <x-text-input id="skills" name="skills[]" type="checkbox" value="1" /><span class="mr-3">Skills1</span>
+                <x-text-input id="skills" name="skills[]" type="checkbox" value="2" /><span class="mr-3">Skills2</span>
+                <x-text-input id="skills" name="skills[]" type="checkbox" value="3" /><span class="mr-3">Skills3</span>
+                <x-text-input id="skills" name="skills[]" type="checkbox" value="4" /><span class="mr-3">Skills4</span>
+                <x-text-input id="skills" name="skills[]" type="checkbox" value="5" /><span class="mr-3">Skills5</span>
+            </div>
 
-            <x-checkbox id="skills" name="skills[]" type="checkbox" value="4"/>
-            <label for="skills" name="skills[]" value="test">skills4</label>
-
-            <x-checkbox id="skills" name="skills[]" type="checkbox" value="5"/>
-            <label for="skills" name="skills[]" value="test">skills5</label>
             <x-input-error :messages="$errors->get('skills')" class="mt-2" />
         </div>
 

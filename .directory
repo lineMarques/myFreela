@@ -1,0 +1,9 @@
+[Dolphin]
+SortRole=modificationtime
+Timestamp=2023,9,14,15,2,1.419
+Version=4
+ViewMode=1
+VisibleRoles=Compact_text,Compact_modificationtime
+
+[Settings]
+HiddenFilesShown=true

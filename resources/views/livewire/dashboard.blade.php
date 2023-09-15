@@ -12,9 +12,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }} <br><br><br><br><br>
 
-                    @if ($user->typeUSer == "trabalhar")
-
-                    @else
+                    @if (Auth::user()->typeUSer === "gerente")
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -40,23 +38,27 @@
                                         Valor
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
 
                                         <span class="sr-only">Edit</span>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($user->company->freelas as $freela)
 
+                            @foreach ($freelas as $freela)
+                            <tbody>
 
                                 <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    class="bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{$user->company->companyName}}
+                                        {{Auth::user()->company->companyName}}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{$freela->dataFreela}}
+                                        <input class="border-none bg-transparent" type="date" disabled
+                                            value="{{$freela->dataFreela}}">
                                     </td>
                                     <td class="px-6 py-4">
                                         {{$freela->horaInicio}}
@@ -68,7 +70,14 @@
                                         {{$freela->cargo}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{$freela->valor}}
+                                        {{$freela->valorFreela}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @livewire('toggle-freela',[
+                                        'freela' => $freela,
+                                        'status' => 'status'
+                                        ])
+
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <a href={{route("freela.edit", $freela->id)}}
@@ -76,19 +85,150 @@
                                             hover:underline">Edit</a>
                                     </td>
                                 </tr>
-                                @endforeach
-                    </div>
-                    @endif
+                            </tbody>
+                            @endforeach
+                        </table>
 
-                    <a href={{route('freela.create')}}>
-                        <x-primary-button>{{'Abrir Freela'}}</x-primary-button>
-                    </a>
+                    </div>
+
+                    {{ $freelas->links()}}
+
+                    <div class="mt-4">
+                        <a href={{route('freela.create')}}>
+                            <x-primary-button>{{'Abrir Freela'}}</x-primary-button>
+                        </a>
+                    </div>
+
+                    @else
+
+
+                    @endif
+                    {{$i=4}}
+
+                    <div class="flex items-center mb-5">
+                        <p
+                            class="bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                            8.7</p>
+                        <p class="ml-2 font-medium text-gray-900 dark:text-white">Excellent</p>
+                        <span class="w-1 h-1 mx-2 bg-gray-900 rounded-full dark:bg-gray-500"></span>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">376 reviews</p>
+                        <a href="#"
+                            class="ml-auto text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read
+                            all reviews</a>
+                    </div>
+                    <div class="gap-8 sm:grid sm:grid-cols-2">
+                        <div>
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Staff</dt>
+                                <dd class="flex items-center mb-3">
+                                    <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                                        <div class="bg-blue-600 h-2.5 rounded dark:bg-blue-500" style="width:{{$i}}%">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{$i}}</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Comfort</dt>
+                                <dd class="flex items-center mb-3">
+                                    <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                                        <div class="bg-blue-600 h-2.5 rounded dark:bg-blue-500" style="width: 89%">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8.9</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Free WiFi</dt>
+                                <dd class="flex items-center mb-3">
+                                    <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                                        <div class="bg-blue-600 h-2.5 rounded dark:bg-blue-500" style="width: 88%">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8.8</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Facilities</dt>
+                                <dd class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                                        <div class="bg-blue-600 h-2.5 rounded dark:bg-blue-500" style="width: 54%">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">5.4</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div>
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Value for money</dt>
+                                <dd class="flex items-center mb-3">
+                                    <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                                        <div class="bg-blue-600 h-2.5 rounded dark:bg-blue-500" style="width: 89%">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8.9</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Cleanliness</dt>
+                                <dd class="flex items-center mb-3">
+                                    <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                                        <div class="bg-blue-600 h-2.5 rounded dark:bg-blue-500" style="width: 70%">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">7.0</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Location</dt>
+                                <dd class="flex items-center">
+                                    <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                                        <div class="bg-blue-600 h-2.5 rounded dark:bg-blue-500" style="width: 89%">
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8.9</span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+                    <form action="" method="POST" enctype="multipart/form-data">
+
+                        <div class="stars flex flex-row-reverse justify-end">
+
+
+                            <input class="hidden peer" type="radio" id="star1" name="star" value="1">
+                            <label for="star1" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
+
+                            <input class="hidden peer" type="radio" id="star2" name="star" value="1">
+                            <label for="star2" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
+
+                            <input class="hidden peer" type="radio" id="star3" name="star" value="1">
+                            <label for="star3" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
+
+                            <input class="hidden peer" type="radio" id="star4" name="star" value="1">
+                            <label for="star4" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
+
+                            <input class="hidden peer" type="radio" id="star5" name="star" value="1">
+                            <label for="star5" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
+
+
+                        </div>
+
+
+                    </form>
+
+
+
 
                 </div>
-
             </div>
         </div>
-    </div>
 
 
 </x-app-layout>

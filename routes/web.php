@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('livewire.welcome');
 });
 
-Route::get('/teste', function () {
-    return view('teste');
+Route::get('/dashboard', function () {
+    return view('livewire.dashboard');
 });
 
 /* Routes Curriculo */
@@ -53,11 +53,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/dashboard', [FreelaController::class, 'index'])->name('dashboard');
     Route::get('/cadastrarFreela', [FreelaController::class, 'create'])->name('freela.create');
     Route::post('/freela', [FreelaController::class, 'store'])->name('freela.store');
     Route::get('/freela/{id}', [FreelaController::class, 'edit'])->name('freela.edit');
     Route::patch('/freela/{id}', [FreelaController::class, 'update'])->name('freela.update');
-    Route::delete('/freela', [FreelaController::class, 'destroy'])->name('freela.destroy');
+    Route::delete('/freela/{id}', [FreelaController::class, 'destroy'])->name('freela.destroy');
 });
 
 require __DIR__ . '/auth.php';

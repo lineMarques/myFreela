@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('freelas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained('companies');
-            $table->string('dataFreela');
+            $table->date('dataFreela');
             $table->time('horaInicio');
             $table->time('horaFinal');
             $table->string('cargo');
