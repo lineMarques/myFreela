@@ -4,11 +4,14 @@ use App\Http\Controllers\{
     CompanyController,
     CurriculoController,
     FreelaController,
-    ProfileController
+    InviteController,
+    ProfileController,
+    StarRatingController
 };
-use App\Http\Livewire\Company;
-use App\Http\Livewire\Company\Company as CompanyCompany;
-use App\Http\Livewire\PersonalData;
+use App\Http\Livewire\{
+    Company\Company as CompanyCompany,
+    PersonalData,
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +23,7 @@ Route::get('/dashboard', function () {
 });
 
 /* Routes Curriculo */
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [CurriculoController::class, 'index'])->name('dashboard');
     Route::get('/cadastrarCurriculo', [CurriculoController::class, 'create'])->name('curriculo.create');
@@ -31,6 +35,7 @@ Route::middleware('auth')->group(function () {
 });
 
 /* Routes Profile */
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -60,5 +65,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('/freela/{id}', [FreelaController::class, 'update'])->name('freela.update');
     Route::delete('/freela/{id}', [FreelaController::class, 'destroy'])->name('freela.destroy');
 });
+
+/* Routes Invite */
+
+Route::middleware('auth')->group(function () {
+    Route::get('convite', [InviteController::class, 'create'])->name('invite.create');
+    Route::post('convite', [InviteController::class, 'store'])->name('invite.store');
+});
+
+/* Routes Star Rating */
+
+Route::middleware('auth')->group(function () {
+    Route::get('avaliacao', [StarRatingController::class, 'create'])->name('star.create');
+    Route::post('avaliacao', [StarRatingController::class, 'store'])->name('star.store');
+});
+
 
 require __DIR__ . '/auth.php';

@@ -10,10 +10,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }} <br><br><br><br><br>
 
-                    @if (Auth::user()->typeUSer === "gerente")
 
+                    @if (Auth::user()->typeUser == 'gerente')
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead
@@ -90,8 +89,8 @@
                         </table>
 
                     </div>
-
                     {{ $freelas->links()}}
+
 
                     <div class="mt-4">
                         <a href={{route('freela.create')}}>
@@ -99,13 +98,15 @@
                         </a>
                     </div>
 
+
                     @else
 
 
-                    @endif
+                    {{ __("Acompanhe as suas mérticas") }}
+
                     {{$i=4}}
 
-                    <div class="flex items-center mb-5">
+                    <div class="flex items-center mb-5 mt-4">
                         <p
                             class="bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">
                             8.7</p>
@@ -188,47 +189,16 @@
                                         </div>
                                     </div>
                                     <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8.9</span>
+
                                 </dd>
                             </dl>
                         </div>
                     </div>
-                    <br><br><br><br><br><br><br><br><br><br><br><br>
 
-
-
-
-                    <form action="" method="POST" enctype="multipart/form-data">
-
-                        <div class="stars flex flex-row-reverse justify-end">
-
-
-                            <input class="hidden peer" type="radio" id="star1" name="star" value="1">
-                            <label for="star1" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
-
-                            <input class="hidden peer" type="radio" id="star2" name="star" value="1">
-                            <label for="star2" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
-
-                            <input class="hidden peer" type="radio" id="star3" name="star" value="1">
-                            <label for="star3" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
-
-                            <input class="hidden peer" type="radio" id="star4" name="star" value="1">
-                            <label for="star4" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
-
-                            <input class="hidden peer" type="radio" id="star5" name="star" value="1">
-                            <label for="star5" class="fas fa-star text-gray-300 peer-checked:text-yellow-500"></label>
-
-
-                        </div>
-
-
-                    </form>
-
-
-
-
+                    @endif
+                    
                 </div>
             </div>
         </div>
-
-
+    </div>
 </x-app-layout>

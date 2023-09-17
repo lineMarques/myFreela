@@ -39,7 +39,7 @@
 
                         @else
 
-                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="..public/assets/img/no-logo.jpg">
+                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="/assets/img/no-logo.jpg">
 
                         @endif
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Freela;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +23,7 @@ class FreelaController extends Controller
         $this->company = $company;
         $this->freela = $freela;
     }
+
     public function index()
     {
         $freelas = $this->freela

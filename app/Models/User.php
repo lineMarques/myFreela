@@ -76,6 +76,17 @@ class User extends Authenticatable
         return $this->morphOne(Image::class,'imageable');
     }
 
+    public function invites(){
+
+        return $this->hasMany(Invite::class);
+    }
+
+    public function starRating(){
+
+        return $this->morphOne(starRating::class,'stellar');
+    }
+
+
 
 
 }

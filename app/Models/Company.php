@@ -37,6 +37,16 @@ class Company extends Model
         return $this->hasMany(Freela::class);
     }
 
+    public function invites()
+    {
+        return $this->hasMany(invite::class);
+    }
+
+    public function starRating(){
+
+        return $this->morphOne(starRating::class,'stellar');
+    }
+
 }
 
 
