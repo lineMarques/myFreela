@@ -69,7 +69,8 @@ Route::middleware('auth')->group(function () {
 /* Routes Invite */
 
 Route::middleware('auth')->group(function () {
-    Route::get('convite', [InviteController::class, 'create'])->name('invite.create');
+    Route::get('convite/{freela}', [InviteController::class, 'create'])->name('invite.create');
+    Route::get('convite/{id}', [InviteController::class, 'show'])->name('invite.show');
     Route::post('convite', [InviteController::class, 'store'])->name('invite.store');
 });
 

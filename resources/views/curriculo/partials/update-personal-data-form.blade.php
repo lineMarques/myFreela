@@ -3,10 +3,10 @@
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             Dados Pessoais
         </h2>
-    </header> 
+    </header>
 
     @if (empty($user->image->image))
-    <img class="w-20 h-20 mb-3 text-gray-400 rounded-full m-3" src="img/no-photo.png"
+    <img class="w-20 h-20 mb-3 text-gray-400 rounded-full m-3" src="/assets/img/no-photo.png"
         alt="{{$user->userName}}">
     @else
     <img class="w-20 h-20 mb-3 text-gray-400 rounded-full m-3" src="{{ url("storage/{$user->image->image}") }}"

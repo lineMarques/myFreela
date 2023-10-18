@@ -21,11 +21,11 @@ class Invite extends Model
 
     public function company()
     {
-        return $this->belogsTo(Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function user()
     {
-        return $this->belogsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

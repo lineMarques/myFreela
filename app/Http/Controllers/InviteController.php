@@ -9,6 +9,8 @@ use App\Models\{
 };
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;
 
 class InviteController extends Controller
@@ -29,32 +31,11 @@ class InviteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($freelaId)
     {
-        $user = $this->user->first();
-        $freela = $this->freela->first();
-        return view('invite.create-invite', compact('freela','user'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-      /*   $user = $this->user;
-        $freela = $this->freela->company_id;
-
-        dd($freela);  */
-        $invite = $this->invite->create([
-            'user_id' => $request['user_id'],
-            'company_id' =>  $request['company_id'],
-            'confirmacao'=> true,
-        ]);
-
-        return view('livewire.dashboard', compact('invite'));
+        $freela = $this->freela->where('id', $freelaId)->first();
+        $funcionario = $this->user->find(Auth::id()); //query
+        return view('invite.create-invite', compact('funcionario', 'freela'));
     }
 
     /**
@@ -63,5 +44,33 @@ class InviteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        $user = $this->user->find(Auth::id());
+        $invite = $this->invite->where('user_id', $user->id)->first();
+        return view('invite.create-invite', compact('user', 'invite'));
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $invite = $this->invite->create([
+            'user_id' => $request['user_id'],
+            'company_id' =>  $request['company_id'],
+            'confirmacao' => $request['confirmacao'],
+        ]);
 
+        return Redirect::route('dashboard', compact('invite'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 }

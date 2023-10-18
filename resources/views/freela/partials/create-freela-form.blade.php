@@ -20,7 +20,7 @@
                     <div class="mt-4">
                         <x-input-label for=dataFreela :value="__('Qual o dia do Freela?')" />
                         <x-text-input id="dataFreela" class="w-full block mt-0" type="date" name="dataFreela"
-                            :value="old('dataFreela')" required autocomplete="dataFreela" min="{{ date('Y-m-d') }}" />
+                            :value="old('dataFreela')" required autocomplete="dataFreela"/>
                         <x-input-error :messages="$errors->get('dataFreela')" class="mt-2" />
                     </div>
 
@@ -28,7 +28,7 @@
                     <div class="mt-4">
                         <x-input-label for="horaInicio" :value="__('Que horas o inicia o trabalho?')" />
                         <x-text-input id="horaInicio" class="w-full block mt-0" type="time" name="horaInicio"
-                            :value="old('horaInicio')" required autocomplete="horaInicio" />
+                            :value="old('horaInicio')" required autocomplete="horaInicio"   />
                         <x-input-error :messages="$errors->get('horaInicio')" class="mt-2" />
                     </div>
 
@@ -72,8 +72,12 @@
                         <x-input-error :messages="$errors->get('valorFreela')" class="mt-2" />
                     </div>
 
-                    <x-primary-button class="mt-4">Chamar Freela</x-primary-button>
+                    <a href="http://"></a>
+                    <x-primary-button class="mt-4">Cadastrar Freela</x-primary-button>
 
+                    @if (session('status') === 'hora-inicio')
+                    <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600 dark:text-gray-400">{{ __('Informação atualizada.') }}</p>
+                    @endif
 
                 </div>
 

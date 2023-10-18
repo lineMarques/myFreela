@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FreelaUpdateRequest;
 use App\Models\Company;
 use App\Models\Freela;
+use App\Models\Invite;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,12 +18,14 @@ class FreelaController extends Controller
     protected $user;
     protected $company;
     protected $freela;
+    protected $invite;
 
-    public function __construct(User $user, Company $company, Freela $freela)
+    public function __construct(User $user, Company $company, Freela $freela, Invite $invite)
     {
         $this->user = $user;
         $this->company = $company;
         $this->freela = $freela;
+        $this->invite = $invite;
     }
 
     public function index()
@@ -30,7 +34,7 @@ class FreelaController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
-        return view('livewire.dashboard', compact('freelas'));
+        return view('livewire.freela.freela-show', compact('freelas'));
     }
 
     /**
@@ -43,13 +47,14 @@ class FreelaController extends Controller
         return view('freela.partials.create-freela-form');
     }
 
-    public function store(Request $request)
+    public function store(FreelaUpdateRequest $request)
     {
         $user = $this->user->find(Auth::id());
         $company = $user->company;
         $company->freelas()->create($request->all());
 
-        return Redirect::route('dashboard');
+
+        return Redirect::route('dashboard', compact('company'));
     }
 
     /**

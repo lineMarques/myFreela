@@ -32,7 +32,7 @@ $user = Auth::user();
 
                     @else
 
-                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="img/no-photo.png">
+                        <img class="w-40 h-40 mb-3 text-gray-400 rounded-full" src="/assets/img/no-photo.png">
 
                     @endif
 

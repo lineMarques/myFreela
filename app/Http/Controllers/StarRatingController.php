@@ -32,8 +32,8 @@ class StarRatingController extends Controller
 
     public function create()
     {
-        $invite = $this->invite->where('user_id', Auth::id())->first();
-        return view('starRating.create-starRating', compact('invite'));
+        $inviteUser = $this->invite->where('1', Auth::id()));
+        return view('starRating.create-starRating', compact('inviteUser'));
     }
 
     /**

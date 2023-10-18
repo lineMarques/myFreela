@@ -54,7 +54,7 @@
 
 
                 @if (empty($user->image->image))
-                <img class="w-12 h-12 mb-3 text-gray-400 rounded-full m-3" src="img/no-photo.png"
+                <img class="w-12 h-12 mb-3 text-gray-400 rounded-full m-3" src="/assets/img/no-photo.png"
                     alt="{{$user->userName}}">
                 @else
                 <img class="w-12 h-12 mb-3 text-gray-400 rounded-full m-3" src="{{ url("storage/{$user->image->image}")

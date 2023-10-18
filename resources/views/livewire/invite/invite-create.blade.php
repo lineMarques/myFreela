@@ -11,8 +11,9 @@
                 <div class=" flex p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <div>
                         <p class="mt-1 text-xl text-gray-600 dark:text-gray-400">
-                            Olá <span class="font-semibold text-gray-800">{{$funcionario->userName}}</span>, a empresa
-                            <span class="font-semibold text-gray-800">{{$freela->company->companyName}}</span> está te
+                            Olá <span class="font-semibold text-gray-800">{{$funcionario->userName}}</span>, a
+                            empresa <span class="font-semibold text-gray-800">{{$freela->company->companyName}}</span>
+                            está te
                             convidando
                             para um freela.
                         </p>
@@ -48,18 +49,17 @@
                         <div class=" flex mt-4">
 
                             <form action="{{route('invite.store', [
-                                    'user_id' => $funcionario->id,
-                                    'company_id' => $freela->company->id,
-                                    'confirmacao'=> true,
-                                ])}}" method="post">
+                                        'user_id' => $funcionario->id,
+                                        'company_id' => $freela->company->id,
+                                        'confirmacao'=> true,
+                                    ])}}" method="post">
                                 @csrf
+
+
                                 <x-primary-button>{{ __('Aceitar') }}</x-primary-button>
                             </form>
 
-                            <a href="{{route('invite.create')}}">
-                                <x-secondary-button class="ml-4">{{__('Recusar')}}</x-secundary-button>
-                            </a>
-
+                            <x-secondary-button class="ml-4">{{__('Recusar')}}</x-secundary-button>
                         </div>
 
                     </div>
