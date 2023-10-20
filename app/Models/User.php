@@ -81,9 +81,9 @@ class User extends Authenticatable
         return $this->hasMany(Invite::class);
     }
 
-    public function starRating(){
+    public function rating(){
 
-        return $this->morphOne(starRating::class,'stellar');
+        return $this->morphOne(starRating::class,'ratingablle');
     }
 
 

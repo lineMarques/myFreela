@@ -14,7 +14,7 @@
 
                     @if (Auth::user()->typeUser == 'gerente')
 
-                       @livewire('freela.freela-show')
+                       @include('freela.partials.show-freela')
 
                     @else
 

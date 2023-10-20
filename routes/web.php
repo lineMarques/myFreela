@@ -77,8 +77,11 @@ Route::middleware('auth')->group(function () {
 /* Routes Star Rating */
 
 Route::middleware('auth')->group(function () {
-    Route::get('avaliacao', [StarRatingController::class, 'create'])->name('star.create');
-    Route::post('avaliacao', [StarRatingController::class, 'store'])->name('star.store');
+    Route::get('avaliacao', [StarRatingController::class, 'create'])->name('stars.create');
+    Route::post('avaliacao', [StarRatingController::class, 'store'])->name('stars.store');
+    Route::get('erro', function(){
+        return view('invite.erro-invite');
+    });
 });
 
 

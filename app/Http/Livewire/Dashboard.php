@@ -14,11 +14,7 @@ class Dashboard extends Component
         $this->freela = Freela::all();
     }
 
-    public function disableFreela()
-    {
-        $this->emit('disableFreela');
-    }
-    
+   
     public function render()
     {
         return view('livewire.dashboard');

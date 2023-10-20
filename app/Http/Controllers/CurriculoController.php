@@ -31,12 +31,6 @@ class CurriculoController extends Controller
         $this->institution = $institution;
     }
 
-    public function index()
-    {
-
-        return view('livewire.dashboard');
-    }
-
     public function create()
     {
         $user = $this->user->find(Auth::id());

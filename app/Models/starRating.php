@@ -10,11 +10,11 @@ class starRating extends Model
     use HasFactory;
 
     protected $fillable = [
-        'star',
+        'rating ',
         'reviwe',
     ];
 
-    public function stellar()
+    public function ratingablle()
     {
         return $this->morphTo();
     }

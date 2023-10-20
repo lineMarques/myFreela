@@ -42,9 +42,9 @@ class Company extends Model
         return $this->hasMany(invite::class);
     }
 
-    public function starRating(){
+    public function rating(){
 
-        return $this->morphOne(starRating::class,'stellar');
+        return $this->morphOne(starRating::class,'ratingablle');
     }
 
 }

@@ -1,11 +1,4 @@
-<x-app-layout>
-
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Vagas que você cadastrou') }}
-        </h2>
-    </x-slot>
-
+<section>
     <div class="flex py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800  sm:rounded-lg">
@@ -71,7 +64,7 @@
                                 <td>
 
                                     <a href={{route('invite.create', $freela->id)}}>
-                                        <x-primary-button>{{'Achar Freelancer'}}</x-primary-button>
+                                        <x-primary-button>{{'Enviar Convites'}}</x-primary-button>
                                     </a>
 
                                 </td>
@@ -101,4 +94,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</section>

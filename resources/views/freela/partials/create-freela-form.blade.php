@@ -20,7 +20,7 @@
                     <div class="mt-4">
                         <x-input-label for=dataFreela :value="__('Qual o dia do Freela?')" />
                         <x-text-input id="dataFreela" class="w-full block mt-0" type="date" name="dataFreela"
-                            :value="old('dataFreela')" required autocomplete="dataFreela"/>
+                            :value="old('dataFreela')" min="{{date('Y-m-d')}}" required autocomplete="dataFreela"/>
                         <x-input-error :messages="$errors->get('dataFreela')" class="mt-2" />
                     </div>
 

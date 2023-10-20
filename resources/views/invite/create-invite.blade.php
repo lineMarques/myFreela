@@ -56,9 +56,15 @@
                                 <x-primary-button>{{ __('Aceitar') }}</x-primary-button>
                             </form>
 
-                            <a href="{{route('invite.create')}}">
-                                <x-secondary-button class="ml-4">{{__('Recusar')}}</x-secundary-button>
-                            </a>
+                            <form action="{{route('invite.store', [
+                                'user_id' => $funcionario->id,
+                                'company_id' => $freela->company->id,
+                                'confirmacao'=> false,
+                            ])}}" method="post">
+                                @csrf
+                                <x-secondary-button type="submit" class="ml-4">{{__('Recusar')}}</x-secundary-button>
+                            </form>
+
 
                         </div>
 

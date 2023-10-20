@@ -14,7 +14,7 @@
             <input class="hidden peer" type="radio" id="star4" name="star" value="2">
             <label for="star4" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
-            <input class="hidden peer" type="radio" id="star5" name="star" value="1">
+            <input class="hidden peer" type="radio" id="star5" name="star" value="1" required>
             <label for="star5" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
         </div>

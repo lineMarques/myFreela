@@ -21,5 +21,5 @@ class Experience extends Model
     public function user()
     {
         return $this->belogsTo(User::class);
-    } 
+    }
 }

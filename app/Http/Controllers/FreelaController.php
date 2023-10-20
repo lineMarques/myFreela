@@ -34,7 +34,7 @@ class FreelaController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
-        return view('livewire.freela.freela-show', compact('freelas'));
+        return view('livewire.dashboard', compact('freelas'));
     }
 
     /**
@@ -52,7 +52,6 @@ class FreelaController extends Controller
         $user = $this->user->find(Auth::id());
         $company = $user->company;
         $company->freelas()->create($request->all());
-
 
         return Redirect::route('dashboard', compact('company'));
     }

@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('star_ratings', function (Blueprint $table) {
             $table->id();
-            $table->morphs('stellar');
-            $table->string('tag1');
-            $table->string('tag2');
-            $table->string('tag3');
+            $table->morphs('ratingablle');
+            $table->integer('star');
+            $table->string('reviwe');
             $table->timestamps();
         });
     }

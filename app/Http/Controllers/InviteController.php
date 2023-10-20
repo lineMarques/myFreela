@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\InviteStatus;
 use App\Models\{
     Freela,
     Invite,
@@ -10,18 +11,20 @@ use App\Models\{
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;
 
 class InviteController extends Controller
 {
-    protected $user;
+    protected $funcionario;
     protected $freela;
     protected $invite;
 
-    public function __construct(User $user, Freela $freela, Invite $invite)
+
+    public function __construct(User $funcionario, Freela $freela, Invite $invite)
     {
-        $this->user = $user;
+        $this->funcionario = $funcionario;
         $this->freela = $freela;
         $this->invite = $invite;
     }
@@ -34,7 +37,7 @@ class InviteController extends Controller
     public function create($freelaId)
     {
         $freela = $this->freela->where('id', $freelaId)->first();
-        $funcionario = $this->user->find(Auth::id()); //query
+        $funcionario = $this->funcionario->find(Auth::id()); //query
         return view('invite.create-invite', compact('funcionario', 'freela'));
     }
 
@@ -46,9 +49,9 @@ class InviteController extends Controller
      */
     public function show($id)
     {
-        $user = $this->user->find(Auth::id());
+        /*  $user = $this->user->find(Auth::id());
         $invite = $this->invite->where('user_id', $user->id)->first();
-        return view('invite.create-invite', compact('user', 'invite'));
+        return view('invite.create-invite', compact('user', 'invite')); */
     }
     /**
      * Store a newly created resource in storage.
@@ -58,11 +61,19 @@ class InviteController extends Controller
      */
     public function store(Request $request)
     {
-        $invite = $this->invite->create([
-            'user_id' => $request['user_id'],
-            'company_id' =>  $request['company_id'],
-            'confirmacao' => $request['confirmacao'],
-        ]);
+        $invite = $this->invite;
+        $query = DB::table('invites')
+            ->join('users', 'invites.user_id', '=', 'users.id')
+            ->get();
+
+        if ($query->all() == null) {
+
+            $invite->create($request->all());
+
+        } else {
+            
+            return view('invite.erro-invite')->with('status', 'erroTrue');
+        }
 
         return Redirect::route('dashboard', compact('invite'));
     }
