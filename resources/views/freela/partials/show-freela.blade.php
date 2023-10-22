@@ -63,8 +63,14 @@
                                 </td>
                                 <td>
 
-                                    <a href={{route('invite.create', $freela->id)}}>
-                                        <x-primary-button>{{'Enviar Convites'}}</x-primary-button>
+
+                                    <a href={{route('dashboard')}}>
+                                        <form action="{{route('invite.create', [$freela->id])}}" method="GET">
+                                            @method('get')
+                                            <x-primary-button>{{'Enviar Convites'}}</x-primary-button>
+
+                                        </form>
+
                                     </a>
 
                                 </td>

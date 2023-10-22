@@ -46,7 +46,6 @@ class StarRatingController extends Controller
     public function store(Request $request)
     {
         $inviteUser = $this->invite->where('user_id', Auth::id())->first();
-        dd($request->all());
         $inviteUser->user->rating()->create($request->all());
     }
 

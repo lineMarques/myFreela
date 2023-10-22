@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\DisparaConvite;
+use App\Events\EventoConvite;
+use App\Listeners\DisparaConvite as ListenersDisparaConvite;
 use App\Models\{
     Address,
     PersonalData
@@ -26,6 +29,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        EventoConvite::class => [
+            ListenersDisparaConvite::class,
+        ]
     ];
 
     /**

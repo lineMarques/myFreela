@@ -10,7 +10,7 @@ class starRating extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rating ',
+        'star',
         'reviwe',
     ];
 

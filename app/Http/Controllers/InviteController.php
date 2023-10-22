@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\InviteStatus;
+use App\Events\EventoConvite;
 use App\Models\{
     Freela,
     Invite,
@@ -13,21 +14,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Expr\Cast\Object_;
+use SebastianBergmann\Type\ObjectType;
+use stdClass;
 use Symfony\Component\Console\Input\Input;
 
 class InviteController extends Controller
 {
-    protected $funcionario;
+    protected $user;
     protected $freela;
     protected $invite;
 
-
-    public function __construct(User $funcionario, Freela $freela, Invite $invite)
+    public function __construct(User $user, Freela $freela, Invite $invite)
     {
-        $this->funcionario = $funcionario;
+        $this->user = $user;
         $this->freela = $freela;
         $this->invite = $invite;
     }
+
+    /*  public function index()
+        {
+            $user = $this->user->find(Auth::id());
+            $freela = $user->company->freelas;
+            return view('da', compact('funcionario', 'freela'));
+        } */
 
     /**
      * Show the form for creating a new resource.
@@ -37,8 +47,8 @@ class InviteController extends Controller
     public function create($freelaId)
     {
         $freela = $this->freela->where('id', $freelaId)->first();
-        $funcionario = $this->funcionario->find(Auth::id()); //query
-        return view('invite.create-invite', compact('funcionario', 'freela'));
+        EventoConvite::dispatch($freela);
+        return Redirect::route('dashboard')->with('status', 'invite-created');;
     }
 
     /**
@@ -69,9 +79,8 @@ class InviteController extends Controller
         if ($query->all() == null) {
 
             $invite->create($request->all());
-
         } else {
-            
+
             return view('invite.erro-invite')->with('status', 'erroTrue');
         }
 

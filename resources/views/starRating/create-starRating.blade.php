@@ -13,7 +13,7 @@
                         @csrf
                         <div>
                             <p class="mt-1 text-2xl text-gray-600 dark:text-gray-400">
-                                Nos ajude a escolher os melhores freelas para você. Como {{$inviteUser->user->userName}} se saiu?
+                                Nos ajude a escolher os melhores freelas para você. Como {{$inviteUser}} se saiu?
                             </p>
 
                             <div class="mt-5">

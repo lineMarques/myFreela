@@ -12,6 +12,7 @@ use App\Http\Livewire\{
     Company\Company as CompanyCompany,
     PersonalData,
 };
+use App\Mail\convite;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,10 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('livewire.dashboard');
+});
+
+Route::get('/envioConvite', function () {
+    return new convite;
 });
 
 /* Routes Curriculo */
@@ -69,7 +74,8 @@ Route::middleware('auth')->group(function () {
 /* Routes Invite */
 
 Route::middleware('auth')->group(function () {
-    Route::get('convite/{freela}', [InviteController::class, 'create'])->name('invite.create');
+
+    Route::get('dashboard/{freela}', [InviteController::class, 'create'])->name('invite.create');
     Route::get('convite/{id}', [InviteController::class, 'show'])->name('invite.show');
     Route::post('convite', [InviteController::class, 'store'])->name('invite.store');
 });
