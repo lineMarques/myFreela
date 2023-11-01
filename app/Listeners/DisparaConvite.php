@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class DisparaConvite
 {
@@ -18,8 +19,11 @@ class DisparaConvite
      * @return void
      */
     protected $user;
+
+
     public function __construct(User $user)
     {
+
         $this->user = $user;
     }
 
@@ -31,12 +35,16 @@ class DisparaConvite
      */
     public function handle(EventoConvite $event)
     {
+
         $listaFuncionarios = getFreelancer($event->freela->cargo);
 
         $listaFuncionarios->each(function ($funcionario) {
-
             $funcionario = $this->user->where('id', $funcionario->ratingablle_id)->first();
             Mail::to($funcionario)->send(new InviteFreelancers($funcionario->email));
         });
+
+        dd($listaFuncionarios);
+
+        return $listaFuncionarios;
     }
 }

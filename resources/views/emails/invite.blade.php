@@ -1,10 +1,10 @@
 <x-mail::message>
-# Introduction
+# Olá
 
-The body of your message.
+Complemente a sua renda com o freela que surgiu. Clique no botão e veja todas as informações!
 
 <x-mail::button :url="'http://myfreela.test/dashboard'">
-Clique aqui
+Informações da vaga
 </x-mail::button>
 
 Thanks,<br>

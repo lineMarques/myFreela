@@ -134,6 +134,20 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
+                <x-responsive-nav-link :href="route('company.edit')" :active="request()->routeIs('company.edit')">
+
+                    @if (empty($user->company))
+                    {{ __('Cadastrar Empresa') }}
+                    @else
+                    {{ __('Empresa') }}
+                    @endif
+
+                    <x-responsive-nav-link :href="route('curriculo.edit')"
+                        :active="request()->routeIs('curriculo.edit')">
+                        {{ __('Meu Currículo') }}
+                    </x-responsive-nav-link>
+
+                </x-responsive-nav-link>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
             'userName' => ['required', 'string', 'max:255'],
             'typeUser' =>['required','string', 'max:255'],
             'contact' =>['required','string', 'max:11'],
-            
+
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -43,13 +43,15 @@ class RegisteredUserController extends Controller
             'userName' => $request->userName,
             'typeUser'=> $request->typeUser,
             'contact'=> $request->contact,
-            
+
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        
 
-
+        $user->rating()->create([
+            'star' => 5,
+            'reviwe' => 'My First Star',
+        ]);
 
         event(new Registered($user));
 
@@ -60,8 +62,8 @@ class RegisteredUserController extends Controller
         } else {
             return redirect(RouteServiceProvider::CURRICULO);
         }
-        
 
-        
+
+
     }
 }

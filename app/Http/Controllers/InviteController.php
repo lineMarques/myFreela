@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\InviteStatus;
-use App\Events\EventoConvite;
 use App\Models\{
     Freela,
     Invite,
@@ -12,12 +10,7 @@ use App\Models\{
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use PhpParser\Node\Expr\Cast\Object_;
-use SebastianBergmann\Type\ObjectType;
-use stdClass;
-use Symfony\Component\Console\Input\Input;
 
 class InviteController extends Controller
 {
@@ -32,65 +25,38 @@ class InviteController extends Controller
         $this->invite = $invite;
     }
 
-    /*  public function index()
-        {
-            $user = $this->user->find(Auth::id());
-            $freela = $user->company->freelas;
-            return view('da', compact('funcionario', 'freela'));
-        } */
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($freelaId)
+    public function create()
     {
-        $freela = $this->freela->where('id', $freelaId)->first();
-        EventoConvite::dispatch($freela);
-        return Redirect::route('dashboard')->with('status', 'invite-created');;
+        $user = $this->user->find(Auth::id());
+
+        if ($user->typeUser == 'freelancer') {
+
+            $invites = $this->invite->where('user_id', $user->id);
+            $invites = $invites->orderBy('created_at', 'DESC')->paginate(10);
+            return view('livewire.dashboard0', compact('invites'));
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        /*  $user = $this->user->find(Auth::id());
-        $invite = $this->invite->where('user_id', $user->id)->first();
-        return view('invite.create-invite', compact('user', 'invite')); */
+        $user = $this->user->find(Auth::id());
+        $invite = $this->invite->where('id', $id)->first();
+        return view('invite.partials.show-invite', compact('user', 'invite'));
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function update(Request $request)
     {
-        $invite = $this->invite;
-        $query = DB::table('invites')
-            ->join('users', 'invites.user_id', '=', 'users.id')
-            ->get();
-
-        if ($query->all() == null) {
-
-            $invite->create($request->all());
-        } else {
-
-            return view('invite.erro-invite')->with('status', 'erroTrue');
-        }
-
-        return Redirect::route('dashboard', compact('invite'));
+        $invite = $this->invite->where('id', $request->id)->first();
+        $invite->update([
+            'confirmacao' => true,
+        ]);
+        return Redirect::route('dashboard');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function destroy($id){
+
+        $invite = $this->invite->find($id);
+        $invite->delete();
+        return Redirect::route('dashboard');
+    }
 }

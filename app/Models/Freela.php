@@ -27,5 +27,10 @@ class Freela extends Model
     {
         return $this->belongsTo(Company::class);
     }
+    
+    public function invites(){
+
+        return $this->hasMany(Invite::class);
+    }
 
 }

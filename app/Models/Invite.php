@@ -11,6 +11,7 @@ class Invite extends Model
     use HasFactory;
 
     protected $fillable = [
+        'freela_id',
         'user_id',
         'company_id',
         'confirmacao',
@@ -23,6 +24,11 @@ class Invite extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function freela()
+    {
+        return $this->belongsTo(Freela::class);
     }
 
     public function user()

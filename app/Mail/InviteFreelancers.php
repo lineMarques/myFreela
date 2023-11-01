@@ -22,7 +22,6 @@ class InviteFreelancers extends Mailable
      */
     public function __construct()
     {
-
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FreelaUpdateRequest;
+use App\Mail\InviteFreelancers;
 use App\Models\Company;
 use App\Models\Freela;
 use App\Models\Invite;
@@ -10,8 +11,10 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+
+global $freela;
 
 class FreelaController extends Controller
 {
@@ -19,6 +22,7 @@ class FreelaController extends Controller
     protected $company;
     protected $freela;
     protected $invite;
+    public $vaga;
 
     public function __construct(User $user, Company $company, Freela $freela, Invite $invite)
     {
@@ -30,18 +34,28 @@ class FreelaController extends Controller
 
     public function index()
     {
-        $freelas = $this->freela
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+        $user = $this->user->find(Auth::id());
 
-        return view('livewire.dashboard', compact('freelas'));
+        if ($user->typeUser == 'gerente') {
+            $company = $this->company->where('user_id', Auth::id())->first();
+
+            if (!empty($this->freela)) {
+                $freelas = $this->freela->where('company_id', $company->id);
+
+                $freelas = $freelas->orderBy('created_at', 'DESC')
+                    ->paginate(10);
+
+                return view('livewire.dashboard', compact('freelas'));
+            } else {
+
+                return view('livewire.dashboard');
+            }
+        }
+
+        return view('livewire.dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('freela.partials.create-freela-form');
@@ -56,25 +70,12 @@ class FreelaController extends Controller
         return Redirect::route('dashboard', compact('company'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $freela = $this->freela->find($id);
         return view('freela.edit-freela', compact('freela'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id): RedirectResponse
     {
         $freela = $this->freela->find($id);
@@ -82,12 +83,29 @@ class FreelaController extends Controller
         return Redirect::route('freela.update', $id)->with('status', 'freelaUpdated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function searchFreelancer(Request $request)
+    {
+        $this->vaga = $this->freela->where('id', $request->freela)->first();
+        $listaFuncionarios = getFreelancer($request->cargo);
+
+        $listaFuncionarios->each(function ($funcionario) {
+            $funcionario = $this->user->where('id', $funcionario->ratingablle_id)->first();
+
+            Mail::to($funcionario)->send(new InviteFreelancers($funcionario->email));
+
+
+
+            $this->invite->create([
+                'freela_id' => $this->vaga->id,
+                'user_id' => $funcionario->id,
+                'company_id' => $this->vaga->company_id,
+                'confirmacao' => false,
+            ]);
+        });
+
+        return Redirect::route('dashboard')->with('aa');
+    }
+
     public function destroy(Request $request, $id)
     {
         $request->validateWithBag('userDeletion', [

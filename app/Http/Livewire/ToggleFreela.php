@@ -25,7 +25,7 @@ class ToggleFreela extends Component
     {
         $freela = $this->freela;
         $invite = $this->invite;
-        if ($$invite->confirmacao) {
+        if ($invite->confirmacao) {
             dd($freela, 'teste');
         }
         $this->freela->setAttribute($this->status, $value)->save();

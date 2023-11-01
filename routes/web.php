@@ -12,19 +12,11 @@ use App\Http\Livewire\{
     Company\Company as CompanyCompany,
     PersonalData,
 };
-use App\Mail\convite;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('livewire.welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('livewire.dashboard');
-});
-
-Route::get('/envioConvite', function () {
-    return new convite;
 });
 
 /* Routes Curriculo */
@@ -68,6 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/freela', [FreelaController::class, 'store'])->name('freela.store');
     Route::get('/freela/{id}', [FreelaController::class, 'edit'])->name('freela.edit');
     Route::patch('/freela/{id}', [FreelaController::class, 'update'])->name('freela.update');
+    Route::post('/dashboard', [FreelaController::class, 'searchFreelancer'])->name('freela.search');
     Route::delete('/freela/{id}', [FreelaController::class, 'destroy'])->name('freela.destroy');
 });
 
@@ -75,9 +68,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('dashboard/{freela}', [InviteController::class, 'create'])->name('invite.create');
-    Route::get('convite/{id}', [InviteController::class, 'show'])->name('invite.show');
-    Route::post('convite', [InviteController::class, 'store'])->name('invite.store');
+    Route::get('/dashboard0', [InviteController::class, 'create'])->name('dashboard');
+    Route::get('/convite/{id}', [InviteController::class, 'show'])->name('invite.show');
+    Route::post('/convite', [InviteController::class, 'store'])->name('invite.store');
+    Route::patch('/convite', [InviteController::class, 'update'])->name('invite.update');
+    Route::delete('/convite/{id}', [InviteController::class, 'destroy'])->name('invite.destroy');
 });
 
 /* Routes Star Rating */
@@ -85,7 +80,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('avaliacao', [StarRatingController::class, 'create'])->name('stars.create');
     Route::post('avaliacao', [StarRatingController::class, 'store'])->name('stars.store');
-    Route::get('erro', function(){
+    Route::get('erro', function () {
         return view('invite.erro-invite');
     });
 });
