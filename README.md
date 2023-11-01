@@ -52,7 +52,7 @@ nano .env
 **Subir os containers dentro do diretório laradock**
 
 ```docker
-docker-compose up -d nginx postgres
+docker-compose up -d nginx postgres mailhog
 ```
 
 **Configurar o arquivo laravel.conf do nginx**
