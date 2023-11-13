@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard0', [InviteController::class, 'create'])->name('dashboard');
+    Route::get('/dashboard/freelancer', [InviteController::class, 'create'])->name('dashboard.freelancer') ;
     Route::get('/convite/{id}', [InviteController::class, 'show'])->name('invite.show');
     Route::post('/convite', [InviteController::class, 'store'])->name('invite.store');
     Route::patch('/convite', [InviteController::class, 'update'])->name('invite.update');

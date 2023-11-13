@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('freelas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('companies');
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->date('dataFreela');
             $table->time('horaInicio');
             $table->time('horaFinal');

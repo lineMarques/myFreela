@@ -69,6 +69,6 @@
         <x-input-error :messages="$errors->get('assignments')" class="mt-2" />
     </div>
 
-    <x-primary-button class="mt-4" wire:submit.prevent='storagePhoto'>Cadastrar</x-primary-button>
+    <x-primary-button class="mt-4" >Cadastrar</x-primary-button>
 
 </div>

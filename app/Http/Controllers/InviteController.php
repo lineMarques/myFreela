@@ -30,10 +30,11 @@ class InviteController extends Controller
         $user = $this->user->find(Auth::id());
 
         if ($user->typeUser == 'freelancer') {
-
             $invites = $this->invite->where('user_id', $user->id);
             $invites = $invites->orderBy('created_at', 'DESC')->paginate(10);
-            return view('livewire.dashboard0', compact('invites'));
+            return view('livewire.dashboard', compact('invites'));
+        }else{
+            return view('livewire.dashboard');
         }
     }
 
@@ -46,7 +47,11 @@ class InviteController extends Controller
 
     public function update(Request $request)
     {
+        dd($this->invite);
         $invite = $this->invite->where('id', $request->id)->first();
+
+        dd($this->invite->freela_id);
+
         $invite->update([
             'confirmacao' => true,
         ]);

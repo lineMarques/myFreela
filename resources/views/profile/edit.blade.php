@@ -11,7 +11,7 @@
             <div class="flex p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
 
 
-                    @livewire('image')
+                @livewire('image')
 
 
                 <div class="p-6 ml-10n max-w-xl">
@@ -19,6 +19,24 @@
                 </div>
 
             </div>
+
+            @if (empty($user->cpf))
+            <div>
+                <h2 class="text-lg font-medium text-red-900 dark:text-gray-100">
+                    Não perca tempo, finalize seu cadastro.
+                </h2>
+                <form  method="POST" action="{{ route('curriculo.update') }}">
+                    @csrf
+                    @method('patch')
+                    @livewire('curriculo.personal-data')
+                    @livewire('cep')
+                    <x-primary-button class="mt-4">{{__('Finalizar')}}</x-primary-button>
+                </form>
+            </div>
+            @else
+
+            @endif
+
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
 
@@ -29,20 +47,18 @@
                     </p>
                 </header>
 
-                @if ($user->personalData)
+                @if ($user->experiences)
                 <h2 class="text-lg font-medium text-red-900 dark:text-gray-100">
                     Você já cadastrou seu currículo.
                 </h2>
 
                 @else
-                <a href="{{ route('curriculo.create')}}">
-                    <x-primary-button class="mt-4">Cadastrar</x-primary-button>
+                <a href="{{route('curriculo.create')}}">
+                    <x-primary-button class="mt-4">{{__('Incluir Curriculo')}}</x-primary-button>
                 </a>
                 @endif
 
             </div>
-
-
 
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">

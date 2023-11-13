@@ -15,6 +15,7 @@ class PersonalData extends Component
 
     public function storagePhoto()
     {
+        dd('livewire');
         $this->validate([
             'photo' => 'required|image|max:1024'
         ]);
@@ -25,7 +26,7 @@ class PersonalData extends Component
         $photo = '';
 
         if ($photo = $this->photo->storeAs('users', $nameFile)) {
-            $user->personalData->update([
+            $user->update([
                 'photo' => $photo,
             ]);
         };

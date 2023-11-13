@@ -4,7 +4,7 @@
             Dados Pessoais
         </h2>
     </header>
-    
+
 
     <div class="grid grid-cols-3 ">
 
@@ -59,7 +59,7 @@
 
     </div>
 
-    <div class="mt-4">
+   {{--  <div class="mt-4">
         <x-input-label for="pcd" :value="__('Possui Deficiência?')" />
         <input
             class='border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm'
@@ -71,6 +71,6 @@
             id="pcd" name="pcd" type="radio" value="nao" @checked(old('pcd')=='nao' ) />
         <label for="pcd" name="pcd">Não</label>
         <x-input-error :messages="$errors->get('pcd')" class="mt-2" />
-    </div>
+    </div> --}}
 
 </div>

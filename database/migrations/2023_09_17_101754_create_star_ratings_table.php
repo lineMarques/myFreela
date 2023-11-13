@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('star_ratings', function (Blueprint $table) {
             $table->id();
-            $table->morphs('ratingablle');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('evaluator_user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('star');
             $table->string('reviwe');
             $table->timestamps();

@@ -10,12 +10,18 @@ class starRating extends Model
     use HasFactory;
 
     protected $fillable = [
+        'evaluator_user_id',
         'star',
         'reviwe',
     ];
 
-    public function ratingablle()
+    public function user()
     {
-        return $this->morphTo();
+        return $this->belongsToMany(User::class);
+    }
+
+    public function userEvaluator()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

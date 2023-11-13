@@ -20,6 +20,12 @@ return new class extends Migration
             $table->string('contact');
             $table->string('email');
             $table->string('companyName');
+            $table->string('cep');
+            $table->string('road');
+            $table->string('number');
+            $table->string('neighborhood');
+            $table->string('city');
+            $table->string('state');
             $table->timestamps();
         });
     }

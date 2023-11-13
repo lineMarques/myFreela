@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\{
     PersonalData,
+    User,
 };
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -21,12 +22,6 @@ class CurriculoUpdateRequest extends FormRequest
 
             case 'POST': {
                     return [
-                        'name' => ['string', 'max:255', 'min:3', 'required'],
-                        'cpf' => ['string', 'max:11', 'required', 'Cpf', Rule::unique(PersonalData::class)->ignore($this->user()->id)],
-                        'age' => ['integer', 'max:99', 'required'],
-                        'sexo' => ['string', 'max:255', 'required'],
-                        'pcd' => ['string', 'required'],
-
                         'aboutMe' => ['string', 'required', 'max:180'],
                         'skills' => ['array', 'required', 'min:3', 'max:5'],
                         'schooling' => ['string', 'required'],
@@ -46,16 +41,10 @@ class CurriculoUpdateRequest extends FormRequest
             case 'PATCH': {
                     return [
                         'name' => ['string', 'max:255', 'min:3'],
-                        'cpf' => ['string', 'max:11', 'Cpf', Rule::unique(PersonalData::class)->ignore($this->user()->id)],
+                        'cpf' => ['string', 'max:11', 'Cpf', Rule::unique(User::class)],
                         'age' => ['integer', 'max:99'],
                         'sexo' => ['string', 'max:255'],
                         'pcd' => ['string'],
-
-                        'cep' => ['string', 'FormatoCep'],
-                        'road' => ['string', 'max:255'],
-                        'number' => ['integer', 'max:9999'],
-                        'neighborhood' => ['string', 'max:255'],
-                        'city' => ['string', 'max:255'],
 
                         'aboutMe' => ['string', 'max:180'],
                         'skills' => ['array', 'min:3', 'max:5'],

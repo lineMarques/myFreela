@@ -89,11 +89,9 @@ class FreelaController extends Controller
         $listaFuncionarios = getFreelancer($request->cargo);
 
         $listaFuncionarios->each(function ($funcionario) {
-            $funcionario = $this->user->where('id', $funcionario->ratingablle_id)->first();
+            $funcionario = $this->user->where('id', $funcionario->user_id)->first();
 
             Mail::to($funcionario)->send(new InviteFreelancers($funcionario->email));
-
-
 
             $this->invite->create([
                 'freela_id' => $this->vaga->id,

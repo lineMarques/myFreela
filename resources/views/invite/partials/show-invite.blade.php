@@ -39,15 +39,15 @@
 
                         <x-input-label class="mt-4" for="endereco" :value="__('Local')" />
                         <p class="mt-1 text-xl text-gray-600 dark:text-gray-400">
-                            {{$invite->freela->company->address->road}}, {{$invite->freela->company->address->number}},
-                            {{$invite->freela->company->address->neighborhood}}
+                            {{$invite->freela->company->road}}, {{$invite->freela->company->number}},
+                            {{$invite->freela->company->neighborhood}}
                         </p>
 
                         <x-input-label class="mt-4" for="valorFreela" :value="__('Valor')" />
                         <p class="mt-1 text-xl text-gray-600 dark:text-gray-400">{{$invite->freela->valorFreela}}</p>
 
                         <div class=" flex mt-4">
-                            {{dump($invite->id)}}
+
                             <form action="{{route('invite.update',['id' =>$invite->id])}}" method="post">
                                 @csrf
                                 @method('PATCH')

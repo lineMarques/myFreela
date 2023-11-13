@@ -15,16 +15,17 @@ class Company extends Model
         'contact',
         'email',
         'companyName',
+        'cep',
+        'road',
+        'number',
+        'neighborhood',
+        'city',
+        'state'
     ];
 
     public function user()
     {
         return $this->belogsTo(User::class);
-    }
-
-    public function address(){
-
-        return $this->morphOne(Address::class,'addressable');
     }
 
     public function image(){
@@ -41,12 +42,6 @@ class Company extends Model
     {
         return $this->hasMany(invite::class);
     }
-
-    public function rating(){
-
-        return $this->morphOne(starRating::class,'ratingablle');
-    }
-
 }
 
 

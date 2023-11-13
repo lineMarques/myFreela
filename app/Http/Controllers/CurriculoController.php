@@ -39,11 +39,10 @@ class CurriculoController extends Controller
         return view('curriculo.partials.create-curriculo', compact('user', 'institution'));
     }
 
-    public function store(CurriculoUpdateRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
+
         $user = $this->user->find(Auth::id());
-        $user->personalData()->create($request->all());
-        $user->address()->create($request->all());
         $user->aboutMe()->create($request->all());
         $user->experiences()->create($request->all());
 
@@ -54,24 +53,27 @@ class CurriculoController extends Controller
     {
         $user = $request->user();
 
-        if (empty($user->personalData)) {
+        if (empty($user->experiences)) {
             return Redirect::route('curriculo.create');
         } else {
             return view('curriculo.edit-curriculo', compact('user'));
         }
     }
 
-    public function update(CurriculoUpdateRequest $request): RedirectResponse
+    public function update(Request $request):RedirectResponse
     {
         $user = $this->user->find(Auth::id());
-        $user->personalData->update($request->all());
-        $user->address->update($request->all());
-        $user->aboutMe->update($request->all());
 
-        $xp = $user->experiences->where('user_id', $user->id)->first();
-        $xp->update($request->all());
-
-        return Redirect::route('curriculo.edit');
+        if ($user->experiences == null) {
+            $user->update($request->all());
+            return view('livewire.dashboard0');
+        } else {
+            $user->update($request->all());
+            $user->aboutMe->update($request->all());
+            $xp = $user->experiences->where('user_id', $user->id)->first();
+            $xp->update($request->all());
+            return Redirect::route('curriculo.edit');
+        }
     }
 
     public function destroy(Request $request)

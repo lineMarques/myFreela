@@ -2,57 +2,50 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Address;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 
 class Cep extends Component
 {
-    public array $data = [];
+    public $cep;
+    public $road;
+    public $neighborhood;
+    public $city;
+    public $state;
+
 
     protected $rules = [
-        'data.cep' => 'integer|FormatoCep',
+        'cep' => 'integer|FormatoCep',
     ];
 
     protected array $messages = [
 
-        'data.cep.integer' => 'Formato de cep inválido.',
+        'cep.integer' => 'Formato de cep inválido.',
     ];
 
     public function mount()
     {
-
-        $this->data = [
-            'cep',
-            'road',
-            'number',
-            'neighborhood',
-            'city',
-            'state'
-        ];
+        $this->road;
+        $this->neighborhood;
+        $this->city;
+        $this->state;
+        $this->cep;
     }
 
     public function updated(string $key, string $value)
     {
-        $this->validate();
 
         $response = Http::get(url: "https://viacep.com.br/ws/{$value}/json/")->json();
-
 
         if (!empty($response['erro'])) {
             session()->flash('message', 'O Cep é inválido');
         } else {
-
-            $this->data['cep'] = $response['cep'];
-            $this->data['road'] = $response['logradouro'];
-            $this->data['neighborhood'] = $response['bairro'];
-            $this->data['city'] = $response['localidade'];
-            $this->data['state'] = $response['uf'];
+            $this->cep = $response['cep'];
+            $this->road = $response['logradouro'];
+            $this->neighborhood = $response['bairro'];
+            $this->city = $response['localidade'];
+            $this->state = $response['uf'];
         };
-
-
     }
 
     public function render()

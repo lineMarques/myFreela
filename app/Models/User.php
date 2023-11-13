@@ -24,6 +24,17 @@ class User extends Authenticatable
         'contact',
         'password',
         'active',
+        'name',
+        'cpf',
+        'age',
+        'sexo',
+        'photo',
+        'cep',
+        'road',
+        'number',
+        'neighborhood',
+        'city',
+        'state'
     ];
 
     /**
@@ -46,16 +57,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function personaldata()
-    {
-        return $this->hasOne(PersonalData::class);
-    }
-
-    public function address(){
-
-        return $this->morphOne(Address::class,'addressable');
-    }
-
     public function aboutMe (){
 
         return $this->hasOne(AboutMe::class);
@@ -63,7 +64,7 @@ class User extends Authenticatable
 
     public function experiences (){
 
-        return $this->hasMany(Experience::class);
+        return $this->hasOne(Experience::class);
     }
 
     public function company (){
@@ -83,10 +84,11 @@ class User extends Authenticatable
 
     public function rating(){
 
-        return $this->morphOne(starRating::class,'ratingablle');
+        return $this->hasMany(starRating::class);
     }
+    public function evaluator(){
 
-
-
+        return $this->hasMany(starRating::class, 'evaluator_user_id');
+    }
 
 }
