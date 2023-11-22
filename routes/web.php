@@ -4,6 +4,7 @@ use App\Http\Controllers\{
     CompanyController,
     CurriculoController,
     FreelaController,
+    InfoCompany,
     InfoFreelancer,
     InviteController,
     ProfileController,
@@ -41,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
 /* Routes Company */
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'gerente')->group(function () {
 
     Route::get('/dashboard', [CompanyCompany::class, 'index'])->name('dashboard');
     Route::get('/cadastrarEmpresa', [CompanyController::class, 'create'])->name('company.create');
@@ -53,7 +54,7 @@ Route::middleware('auth')->group(function () {
 
 /* Routes Freelance */
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'gerente')->group(function () {
 
     Route::get('/dashboard', [FreelaController::class, 'index'])->name('dashboard');
     Route::get('/cadastrarFreela', [FreelaController::class, 'create'])->name('freela.create');
@@ -62,17 +63,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/freela/{id}', [FreelaController::class, 'update'])->name('freela.update');
     Route::post('/dashboard', [FreelaController::class, 'searchFreelancer'])->name('freela.search');
     Route::delete('/freela/{id}', [FreelaController::class, 'destroy'])->name('freela.destroy');
+    Route::get('/infoFreelancer', [InfoFreelancer::class, 'show'])->name('info.show');
 });
 
 /* Routes Invite */
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'freelancer')->group(function () {
 
     Route::get('/dashboard/freelancer', [InviteController::class, 'create'])->name('dashboard.freelancer') ;
     Route::get('/convite/{id}', [InviteController::class, 'show'])->name('invite.show');
     Route::post('/convite', [InviteController::class, 'store'])->name('invite.store');
     Route::patch('/convite', [InviteController::class, 'update'])->name('invite.update');
     Route::delete('/convite/{id}', [InviteController::class, 'destroy'])->name('invite.destroy');
+    Route::get('/infoCompany', [InfoCompany::class, 'show'])->name('info.company');
 });
 
 
@@ -84,7 +87,7 @@ Route::middleware('auth')->group(function () {
     Route::get('erro', function () {
         return view('invite.erro-invite');
     });
-    Route::get('/infoFreelancer', [InfoFreelancer::class, 'show'])->name('info.show');
+
 
 });
 

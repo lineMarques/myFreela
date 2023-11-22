@@ -25,7 +25,7 @@
             </h2>
             <textarea
                 class="w-full block font-medium text-sm text-gray-700 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
-                name="reviwe" id="reviwe" cols="30" rows="10"></textarea>
+                name="reviwe" id="reviwe" cols="30" rows="10" required></textarea>
         </div>
     </div>
 </section>

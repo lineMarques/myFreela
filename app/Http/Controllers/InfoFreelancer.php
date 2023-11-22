@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use App\Models\Invite;
-use App\Models\User;
+use App\Models\{
+    Company,
+    Invite,
+    User,
+};
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,3 +35,4 @@ class InfoFreelancer extends Controller
         return view('company.infoFreelancer', compact('freelancer'));
     }
 }
+

@@ -62,9 +62,13 @@ class InviteController extends Controller
             return $confirmado->confirmacao == true;
         });
 
-        $this->inviteUser;
-
         if (sizeof($preenchida) == 0) {
+
+            $freela = $this->freela->where('id', $this->inviteUser->freela_id)->first();
+
+            $freela->update([
+                'status' => true,
+            ]);
 
             $this->inviteUser->update([
                 'confirmacao' => true,
@@ -73,6 +77,7 @@ class InviteController extends Controller
             $company  = $this->company->where('id', $this->inviteUser->company->id)->first();
             $manager = $this->user->where('id', $company->user_id)->first();
             Mail::to($manager)->send(new InfoFreelancers($manager->email));
+            
             return Redirect::route('dashboard.freelancer');
 
         }else{

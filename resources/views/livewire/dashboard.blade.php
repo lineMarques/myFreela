@@ -31,23 +31,32 @@
                         <tbody>
                             <tr
                                 class="bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <th scope='row'>{{$invite->company->companyName}}</th>
+                                <th class="px-6 py-4">{{$invite->company->companyName}}</th>
                                 <td class="px-6 py-4">{{$invite->freela->dataFreela}}</td>
                                 <td class="px-6 py-4">{{$invite->freela->horaInicio}}</td>
                                 <td class="px-6 py-4">{{$invite->freela->horaFinal}}</td>
+                                <td class="px-6 py-4">{{$invite->freela->cargo}}</td>
                                 <td class="px-6 py-4">{{$invite->freela->valorFreela}}</td>
                                 <td class="px-6 py-4">
                                     @if ($invite->confirmacao == null)
                                     Pendente
-                                    @else
-                                    Confirmada
-                                    @endif
-                                </td>
+
                                 <td class="px-6 py-4">
                                     <a href="{{route('invite.show', $invite->id)}}">
                                         <x-primary-button>{{'Ver Vaga'}}</x-primary-button>
                                     </a>
                                 </td>
+                                @else
+                                Confirmada
+                                <td class="px-6 py-4">
+                                    <a href="{{route('info.company')}}" class="font-medium text-blue-600 dark:text-blue-500
+                                    hover:underline">
+                                        <p>Entre em contato com a empresa</p>
+                                    </a>
+                                </td>
+                                @endif
+                                </td>
+
                             </tr>
                         </tbody>
 
@@ -70,13 +79,20 @@
                                 <td class="px-6 py-4">{{$freela->valorFreela}}</td>
                                 <td class="px-6 py-4">
                                     @if ($freela->status == true)
-                                        {{'Vaga preenchida'}}
+                                    {{'Vaga preenchida'}}
 
-                                    @else
-                                       {{'Não preenchida'}}
-                                       
-                                    @endif
+                                <td class="px-6 py-4">
+                                    <p>Para cancelar fale diretamente com o Freelancer</p>
                                 </td>
+                                <td class="px-6 py-4">
+                                    <a href="{{route('info.show')}}" class="font-medium text-blue-600 dark:text-blue-500
+                                        hover:underline">
+                                        <p>Informações Freelancer</p>
+                                    </a>
+                                </td>
+                                
+                                @else
+                                {{'Não preenchida'}}
                                 <td class="px-6 py-4">
                                     <form action="{{route('freela.search')}}" method="post">
                                         @csrf
@@ -90,6 +106,11 @@
                                         class="font-medium text-blue-600 dark:text-blue-500
                                         hover:underline">Edit</a>
                                 </td>
+
+                                @endif
+                                </td>
+
+
                             </tr>
                         </tbody>
 
