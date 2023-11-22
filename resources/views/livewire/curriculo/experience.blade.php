@@ -7,10 +7,8 @@
     </header>
 
     <div class="mt-4">
-        <x-input-label for="jobTitle" :value="__('Cargo')" />
+        <x-input-label for="jobTitle" :value="__('Cargo que pretende trabalhar')" />
         <x-select name="jobTitle" id="jobTitle">
-            <option value="semXP" {{old('jobTitle')==='semXP' ? 'selected' : '' }}>Não tenho nenhuma
-                experiência</option>
             <option value="auxCozinha" {{old('jobTitle')==='auxCozinha' ? 'selected' : '' }}>Auxiliar de
                 Cozinha</option>
             <option value="chapeiro" {{old('jobTitle')==='chapeiro' ? 'selected' : '' }}>Chapeiro
@@ -26,6 +24,7 @@
         <x-input-error :messages="$errors->get('jobTitle')" class="mt-2" />
     </div>
 
+    <x-input-label class="mt-5" for="jobTitle" :value="__('Coloque sua ultima experiência nesse cargo')" />
     <div class="space-x-4 grid grid-cols-4">
         <div class="mt-4">
             <x-input-label for="company" :value="__('Empresa')" />

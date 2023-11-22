@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InfoFreelancers;
 use App\Models\{
+    Company,
     Freela,
     Invite,
     User
@@ -10,6 +12,7 @@ use App\Models\{
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class InviteController extends Controller
@@ -17,12 +20,15 @@ class InviteController extends Controller
     protected $user;
     protected $freela;
     protected $invite;
+    protected $company;
+    public  $inviteUser;
 
-    public function __construct(User $user, Freela $freela, Invite $invite)
+    public function __construct(User $user, Freela $freela, Invite $invite, Company $company)
     {
         $this->user = $user;
         $this->freela = $freela;
         $this->invite = $invite;
+        $this->company = $company;
     }
 
     public function create()
@@ -33,7 +39,7 @@ class InviteController extends Controller
             $invites = $this->invite->where('user_id', $user->id);
             $invites = $invites->orderBy('created_at', 'DESC')->paginate(10);
             return view('livewire.dashboard', compact('invites'));
-        }else{
+        } else {
             return view('livewire.dashboard');
         }
     }
@@ -47,18 +53,36 @@ class InviteController extends Controller
 
     public function update(Request $request)
     {
-        dd($this->invite);
-        $invite = $this->invite->where('id', $request->id)->first();
 
-        dd($this->invite->freela_id);
+        $this->inviteUser = $this->invite->where('id', $request->id)->first();
 
-        $invite->update([
-            'confirmacao' => true,
-        ]);
-        return Redirect::route('dashboard');
+        $invites = $this->invite->where('freela_id', $request->freela_id)->get();
+
+        $preenchida =  $invites->filter(function ($confirmado) {
+            return $confirmado->confirmacao == true;
+        });
+
+        $this->inviteUser;
+
+        if (sizeof($preenchida) == 0) {
+
+            $this->inviteUser->update([
+                'confirmacao' => true,
+            ]);
+
+            $company  = $this->company->where('id', $this->inviteUser->company->id)->first();
+            $manager = $this->user->where('id', $company->user_id)->first();
+            Mail::to($manager)->send(new InfoFreelancers($manager->email));
+            return Redirect::route('dashboard.freelancer');
+
+        }else{
+            dd('A vaga ja foi Preenchida');
+        };
+
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
 
         $invite = $this->invite->find($id);
         $invite->delete();

@@ -41,12 +41,11 @@ class CurriculoController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-
         $user = $this->user->find(Auth::id());
         $user->aboutMe()->create($request->all());
         $user->experiences()->create($request->all());
 
-        return Redirect::route('dashboard', compact('user'));
+        return Redirect::route('dashboard.freelancer', compact('user'));
     }
 
     public function edit(Request $request)
@@ -83,8 +82,6 @@ class CurriculoController extends Controller
         ]);
 
         $user = $request->user();
-        $user->personalData->delete();
-        $user->address->delete();
         $user->aboutMe->delete();
         $user->experiences()->delete();
 

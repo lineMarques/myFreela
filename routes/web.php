@@ -4,6 +4,7 @@ use App\Http\Controllers\{
     CompanyController,
     CurriculoController,
     FreelaController,
+    InfoFreelancer,
     InviteController,
     ProfileController,
     StarRatingController
@@ -12,12 +13,11 @@ use App\Http\Livewire\{
     Company\Company as CompanyCompany,
     PersonalData,
 };
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('livewire.welcome');
-});
+})->name('welcome');
 
 /* Routes Curriculo */
 
@@ -75,15 +75,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/convite/{id}', [InviteController::class, 'destroy'])->name('invite.destroy');
 });
 
+
 /* Routes Star Rating */
 
 Route::middleware('auth')->group(function () {
-    Route::get('avaliacao', [StarRatingController::class, 'create'])->name('stars.create');
+    Route::get('avaliacao/{id}', [StarRatingController::class, 'edit'])->name('stars.edit');
     Route::post('avaliacao', [StarRatingController::class, 'store'])->name('stars.store');
     Route::get('erro', function () {
         return view('invite.erro-invite');
     });
+    Route::get('/infoFreelancer', [InfoFreelancer::class, 'show'])->name('info.show');
+
 });
 
 
 require __DIR__ . '/auth.php';
+

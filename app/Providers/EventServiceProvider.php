@@ -6,12 +6,11 @@ use App\Events\DisparaConvite;
 use App\Events\EventoConvite;
 use App\Listeners\DisparaConvite as ListenersDisparaConvite;
 use App\Models\{
-    Address,
-    PersonalData
+    Invite,
 };
 use App\Observers\{
-    AddressObserver,
-    PersonalDataObserver
+    InviteObserver,
+
 };
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -42,7 +41,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Address::observe(AddressObserver::class);
+        Invite::observe(InviteObserver::class);
     }
 
     /**

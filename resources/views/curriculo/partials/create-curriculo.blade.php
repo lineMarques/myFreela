@@ -12,8 +12,6 @@
 
                     @livewire('curriculo.about-me')
                     @livewire('curriculo.experience')
-
- <input type="submit" value="teste">
             </div>
 
         </div>

@@ -15,8 +15,17 @@
             ])
             @endif
 
+            @if (empty(Auth::user()->cpf))
+
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    @include('curriculo.partials.update-personal-data-form')
+                <a href="{{route('profile.edit')}}"><h1>Não perca tempo, finalize seu cadastro e receba oportunidades</h1></a>
+
+            </div>
+
+            @else
+
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                @include('curriculo.partials.update-personal-data-form')
 
             </div>
 
@@ -43,6 +52,9 @@
                     @include('curriculo.partials.delete-curriculo-form')
                 </div>
             </div>
+
+            @endif
+
 
         </div>
     </div>

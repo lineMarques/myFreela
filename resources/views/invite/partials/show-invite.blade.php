@@ -48,7 +48,7 @@
 
                         <div class=" flex mt-4">
 
-                            <form action="{{route('invite.update',['id' =>$invite->id])}}" method="post">
+                            <form action="{{route('invite.update',['id' =>$invite->id, 'freela_id' => $invite->freela_id])}}" method="post">
                                 @csrf
                                 @method('PATCH')
                                 <x-primary-button>{{ __('Aceitar') }}</x-primary-button>

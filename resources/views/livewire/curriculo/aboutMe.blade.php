@@ -10,20 +10,20 @@
 
     <div class="mt-4">
         <x-input-label for="skills" :value="__('Marque aqui de 3 a 5 qualificações.')" />
-        <x-checkbox id="skills" name="skills[]" type="checkbox" value="1" />
-        <label for="skills">skills</label>
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Pontualidade" />
+        <label for="skills">Pontualidade</label>
 
-        <x-checkbox id="skills" name="skills[]" type="checkbox" value="2" />
-        <label for="skills" name="skills[]">skills2</label>
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Comunicação eficaz" />
+        <label for="skills" name="skills[]">Comunicação eficaz</label>
 
-        <x-checkbox id="skills" name="skills[]" type="checkbox" value="3" />
-        <label for="skills" name="skills[]" value="test">skills3</label>
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Organização" />
+        <label for="skills" name="skills[]" value="test">Organização</label>
 
-        <x-checkbox id="skills" name="skills[]" type="checkbox" value="4" />
-        <label for="skills" name="skills[]" value="test">skills4</label>
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Trabalho em equipe" />
+        <label for="skills" name="skills[]" value="test">Trabalho em equipe</label>
 
-        <x-checkbox id="skills" name="skills[]" type="checkbox" value="5" />
-        <label for="skills" name="skills[]" value="test">skills5</label>
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Habilidades de gestão" />
+        <label for="skills" name="skills[]" value="test">Habilidades de gestão</label>
         <x-input-error :messages="$errors->get('skills')" class="mt-2" />
     </div>
 

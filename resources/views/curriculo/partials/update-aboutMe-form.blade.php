@@ -21,18 +21,27 @@
         <div class="mt-4">
 
             @foreach ($user->aboutMe->skills as $skill)
-                <div class="flex flex-col">
-                    {{$skill}}
+                <div class="my-5">
+                    {{$skill}};
                 </div>
             @endforeach
             <x-input-label for="aboutMe" :value="__('Atualize aqui suas skills')" />
 
             <div>
-                <x-text-input id="skills" name="skills[]" type="checkbox" value="1" /><span class="mr-3">Skills1</span>
-                <x-text-input id="skills" name="skills[]" type="checkbox" value="2" /><span class="mr-3">Skills2</span>
-                <x-text-input id="skills" name="skills[]" type="checkbox" value="3" /><span class="mr-3">Skills3</span>
-                <x-text-input id="skills" name="skills[]" type="checkbox" value="4" /><span class="mr-3">Skills4</span>
-                <x-text-input id="skills" name="skills[]" type="checkbox" value="5" /><span class="mr-3">Skills5</span>
+                <x-checkbox id="skills" name="skills[]" type="checkbox" value="Pontualidade" />
+        <label for="skills">Pontualidade</label>
+
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Comunicação eficaz" />
+        <label for="skills" name="skills[]">Comunicação eficaz</label>
+
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Organização" />
+        <label for="skills" name="skills[]" value="test">Organização</label>
+
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Trabalho em equipe" />
+        <label for="skills" name="skills[]" value="test">Trabalho em equipe</label>
+
+        <x-checkbox id="skills" name="skills[]" type="checkbox" value="Habilidades de gestão" />
+        <label for="skills" name="skills[]" value="test">Habilidades de gestão</label>
             </div>
 
             <x-input-error :messages="$errors->get('skills')" class="mt-2" />
