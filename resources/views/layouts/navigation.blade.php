@@ -1,3 +1,6 @@
+@php
+$stars = avgUser();
+@endphp
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,6 +37,10 @@
                         @endif
                     </x-nav-link>
 
+                    <x-nav-link :href="route('stars.show')" :active="request()->routeIs('stars.show')">
+                        {{ __('Avaliações') }}
+                    </x-nav-link>
+
 
                     <x-nav-link :href="route('curriculo.edit')" :active="request()->routeIs('curriculo.edit')">
                         {{ __('Meu Currículo') }}
@@ -56,17 +63,34 @@
                 </div>
             </div>
 
+            <div class="mt-4">
+                <div>{{'Avaliações'}} {{round($stars->avg, 2)}}</div>
 
+                <div class=" mt-8 stars flex flex-row-reverse justify-end">
 
+                    <input class="hidden peer" type="radio" id="star1" name="star" value="5" disabled {{ ($stars->avg == 5)? "checked" : "" }}>
+                    <label for="star1" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
+                    <input class="hidden peer" type="radio" id="star2" name="star" value="4" disabled {{ ($stars->avg < 5 ) && ($stars->avg >= 4 )? "checked" : "" }}>
+                    <label for="star2" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
+
+                    <input class="hidden peer" type="radio" id="star3" name="star" value="3" disabled {{ ($stars->avg < 4 ) && ($stars->avg >= 3 )? "checked" : "" }}>
+                    <label for="star3" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
+
+                    <input class="hidden peer" type="radio" id="star4" name="star" value="2" disabled {{ ($stars->avg < 3 ) && ($stars->avg >= 2 )? "checked" : "" }}>
+                    <label for="star4" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
+
+                    <input class="hidden peer" type="radio" id="star5" name="star" value="1" disabled {{ ($stars->avg < 2 ) && ($stars->avg >= 1 )? "checked" : "" }}>
+                    <label for="star5" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
+
+                </div>
+            </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                 @php
                 $user = Auth::user();
                 @endphp
-
-
 
                 @if (empty($user->image->image))
                 <img class="w-12 h-12 mb-3 text-gray-400 rounded-full m-3" src="/assets/img/no-photo.png"
@@ -137,7 +161,8 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @else
-            <x-responsive-nav-link :href="route('dashboard.freelancer')" :active="request()->routeIs('dashboard.freelancer')">
+            <x-responsive-nav-link :href="route('dashboard.freelancer')"
+                :active="request()->routeIs('dashboard.freelancer')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @endif

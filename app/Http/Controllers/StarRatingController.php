@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{
+    Freela,
     Invite,
     starRating,
     User
@@ -15,14 +16,35 @@ class StarRatingController extends Controller
 {
 
     protected $invite;
-    protected $user;
+    public $user;
     protected $starRating;
+    protected $freela;
 
-    public function __construct(Invite $invite, User $user, starRating $starRating)
+    public function __construct(Invite $invite, User $user, starRating $starRating, Freela $freela)
     {
         $this->invite = $invite;
         $this->user = $user;
         $this->starRating = $starRating;
+        $this->freela = $freela;
+    }
+
+    public function show()
+    {
+        $this->user = $this->user->where('id', Auth::id())->first();
+        $invites = $this->invite->where('company_id',$this->user->company->id)
+            ->where('confirmacao', 'Encerrada')
+            ->orWhere('confirmacao', 'Confirmada')
+            ->get();
+
+        $freelancers = $invites->map(function ($invite) {
+            $freelancers =  $this->user->where('users.id', $invite->user_id)->get();
+            $freelas = $this->freela->where('id', $invite->freela_id)->get();
+            return [$freelancers, $freelas];
+        });
+
+        $starRating = $this->starRating->all();
+
+        return view('starRating.show-starRating', compact('freelancers', 'invites', 'starRating'));
     }
 
     public function edit($id)

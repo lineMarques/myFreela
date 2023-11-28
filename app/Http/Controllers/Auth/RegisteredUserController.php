@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
 
 
         $user->rating()->create([
+           /*  'freela_id' => 1, */
             'evaluator_user_id' => $user->id,
             'star' => 5,
             'reviwe' => 'My First Star',

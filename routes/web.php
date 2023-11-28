@@ -76,18 +76,18 @@ Route::middleware('auth', 'freelancer')->group(function () {
     Route::patch('/convite', [InviteController::class, 'update'])->name('invite.update');
     Route::delete('/convite/{id}', [InviteController::class, 'destroy'])->name('invite.destroy');
     Route::get('/infoCompany', [InfoCompany::class, 'show'])->name('info.company');
+    Route::patch('/encerrar', [InviteController::class, 'close'])->name('encerrar.close');
+
 });
 
 
 /* Routes Star Rating */
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'gerente')->group(function () {
+
+    Route::get('avaliacao', [StarRatingController::class, 'show'])->name('stars.show');
     Route::get('avaliacao/{id}', [StarRatingController::class, 'edit'])->name('stars.edit');
     Route::post('avaliacao', [StarRatingController::class, 'store'])->name('stars.store');
-    Route::get('erro', function () {
-        return view('invite.erro-invite');
-    });
-
 
 });
 

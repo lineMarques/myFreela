@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InfoFreelancers;
+use App\Mail\StarRatingFreelancer;
 use App\Models\{
     Company,
     Freela,
@@ -22,6 +23,7 @@ class InviteController extends Controller
     protected $invite;
     protected $company;
     public  $inviteUser;
+    public  $invites;
 
     public function __construct(User $user, Freela $freela, Invite $invite, Company $company)
     {
@@ -53,13 +55,12 @@ class InviteController extends Controller
 
     public function update(Request $request)
     {
-
         $this->inviteUser = $this->invite->where('id', $request->id)->first();
 
-        $invites = $this->invite->where('freela_id', $request->freela_id)->get();
+        $this->invites = $this->invite->where('freela_id', $request->freela_id)->get();
 
-        $preenchida =  $invites->filter(function ($confirmado) {
-            return $confirmado->confirmacao == true;
+        $preenchida =  $this->invites->filter(function ($confirmado) {
+            return $confirmado->confirmacao == 'Confirmada';
         });
 
         if (sizeof($preenchida) == 0) {
@@ -71,24 +72,38 @@ class InviteController extends Controller
             ]);
 
             $this->inviteUser->update([
-                'confirmacao' => true,
+                'confirmacao' => 'Confirmada',
             ]);
 
             $company  = $this->company->where('id', $this->inviteUser->company->id)->first();
             $manager = $this->user->where('id', $company->user_id)->first();
             Mail::to($manager)->send(new InfoFreelancers($manager->email));
-            
-            return Redirect::route('dashboard.freelancer');
 
-        }else{
+            return Redirect::route('dashboard.freelancer');
+        } else {
             dd('A vaga ja foi Preenchida');
         };
+    }
 
+    public function close(Request $request)
+    {
+        $company  = $this->company->where('id', $request->freela)->first();
+        $manager = $this->user->where('id', $company->user_id)->first();
+
+        Mail::to($manager)->send(new StarRatingFreelancer($manager->email));
+
+        $invite = $this->invite->find($request->invite);
+
+
+        $invite->update([
+            'confirmacao' => 'Encerrada',
+        ]);
+
+        return Redirect::route('dashboard');
     }
 
     public function destroy($id)
     {
-
         $invite = $this->invite->find($id);
         $invite->delete();
         return Redirect::route('dashboard');

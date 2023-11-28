@@ -28,9 +28,9 @@ class InfoFreelancer extends Controller
 
         $company = Auth::user()->company;
         $invite = $this->invite->where('company_id', $company->id)
-                                ->where('confirmacao', true)
+                                ->where('confirmacao', 'Confirmada')
                                 ->get();
-
+        
         $freelancer = $this->user->where('id', $invite[0]->user_id)->first();
         return view('company.infoFreelancer', compact('freelancer'));
     }

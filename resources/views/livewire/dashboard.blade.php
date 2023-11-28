@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
@@ -37,26 +38,35 @@
                                 <td class="px-6 py-4">{{$invite->freela->horaFinal}}</td>
                                 <td class="px-6 py-4">{{$invite->freela->cargo}}</td>
                                 <td class="px-6 py-4">{{$invite->freela->valorFreela}}</td>
+                                <td class="px-6 py-4">{{$invite->confirmacao}}</td>
                                 <td class="px-6 py-4">
-                                    @if ($invite->confirmacao == null)
-                                    Pendente
-
-                                <td class="px-6 py-4">
+                                    @if ($invite->confirmacao == 'Pendente')
                                     <a href="{{route('invite.show', $invite->id)}}">
                                         <x-primary-button>{{'Ver Vaga'}}</x-primary-button>
                                     </a>
                                 </td>
-                                @else
-                                Confirmada
+                                @endif
+
+                                @if ($invite->confirmacao == 'Confirmada')
                                 <td class="px-6 py-4">
                                     <a href="{{route('info.company')}}" class="font-medium text-blue-600 dark:text-blue-500
-                                    hover:underline">
+                                        hover:underline">
                                         <p>Entre em contato com a empresa</p>
                                     </a>
                                 </td>
-                                @endif
+                                <td class="px-6 py-4">
+                                    <form action="{{route('encerrar.close')}}" method="post">
+                                        @csrf
+                                        @method('patch')
+                                        <input type="hidden" name="freela" value="{{$invite->company_id}}">
+                                        <input type="hidden" name="invite" value="{{$invite->id}}">
+                                        <x-danger-button>{{'Encerrar'}}</x-danger-button>
+                                    </form>
                                 </td>
 
+                                @else
+
+                                @endif
                             </tr>
                         </tbody>
 
@@ -82,15 +92,12 @@
                                     {{'Vaga preenchida'}}
 
                                 <td class="px-6 py-4">
-                                    <p>Para cancelar fale diretamente com o Freelancer</p>
-                                </td>
-                                <td class="px-6 py-4">
                                     <a href="{{route('info.show')}}" class="font-medium text-blue-600 dark:text-blue-500
                                         hover:underline">
                                         <p>Informações Freelancer</p>
                                     </a>
                                 </td>
-                                
+
                                 @else
                                 {{'Não preenchida'}}
                                 <td class="px-6 py-4">
@@ -98,7 +105,7 @@
                                         @csrf
                                         <input type="hidden" name="freela" value="{{$freela->id}}">
                                         <input type="hidden" name="cargo" value="{{$freela->cargo}}">
-                                        <x-primary-button>{{'Enviar Convites'}}</x-primary-button>
+                                        @livewire('disable-button' )
                                     </form>
                                 </td>
                                 <td class="px-6 py-4">
@@ -106,7 +113,6 @@
                                         class="font-medium text-blue-600 dark:text-blue-500
                                         hover:underline">Edit</a>
                                 </td>
-
                                 @endif
                                 </td>
 

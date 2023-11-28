@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('freela_id')->constrained('freelas');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('company_id')->constrained('companies');
-            $table->boolean('confirmacao');
+            $table->string('confirmacao');
             $table->timestamps();
         });
     }

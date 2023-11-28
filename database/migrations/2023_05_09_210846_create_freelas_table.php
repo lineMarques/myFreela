@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('cargo');
             $table->string('observacao');
             $table->string('valorFreela');
-            $table->boolean('status');
+            $table->boolean('status')->nullable()->default(null);
             $table->timestamps();
         });
     }

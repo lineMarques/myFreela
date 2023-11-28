@@ -18,7 +18,7 @@ class Invite extends Model
     ];
 
     protected $casts = [
-        'confirmacao' => 'boolean',
+        
     ];
 
     public function company()

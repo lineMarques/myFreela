@@ -30,9 +30,10 @@ class InfoCompany extends Controller
 
         $user = Auth::user();
         $invite = $this->invite->where('user_id', $user->id)
-                                ->where('confirmacao', true)
+                                ->where('confirmacao', 'Confirmada')
                                 ->get();
 
+                        
         $freela = $this->freela->where('id', $invite[0]->freela_id )->first();
         $company = $this->company->where('id', $invite[0]->company_id)->first();
         return view('invite.infoCompany', compact('company', 'user', 'freela'));

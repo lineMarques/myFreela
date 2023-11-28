@@ -97,7 +97,7 @@ class FreelaController extends Controller
                 'freela_id' => $this->vaga->id,
                 'user_id' => $funcionario->id,
                 'company_id' => $this->vaga->company_id,
-                'confirmacao' => false,
+                'confirmacao' => 'Pendente',
             ]);
         });
 

@@ -65,7 +65,7 @@ class CurriculoController extends Controller
 
         if ($user->experiences == null) {
             $user->update($request->all());
-            return view('livewire.dashboard0');
+            return Redirect::route('dashboard.freelancer');
         } else {
             $user->update($request->all());
             $user->aboutMe->update($request->all());

@@ -10,7 +10,12 @@
             <div class=" flex p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="">
 
+                    @if(empty($company->image->image))
+                    <img class="w-20 h-20 mb-3 text-gray-400 rounded-full m-3" src="/assets/img/no-logo.jpg">
+                    @else
                     <img class="w-20 h-20 mb-3 text-gray-400 rounded-full" src="{{ url("storage/{$company->image->image}") }}">
+                    @endif
+
                     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                         {{ __($company->companyName) }}
                     </h2>

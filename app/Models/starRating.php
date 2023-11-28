@@ -13,6 +13,8 @@ class starRating extends Model
         'evaluator_user_id',
         'star',
         'reviwe',
+        'freela_id'
+
     ];
 
     public function user()

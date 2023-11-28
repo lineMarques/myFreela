@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 if (!function_exists("getFreelancer")) {
@@ -18,5 +18,21 @@ if (!function_exists("getFreelancer")) {
             ->get();
 
         return  $freelancer;
+    }
+}
+
+if (!function_exists("avgUser")) {
+
+    function avgUser()
+    {
+        $user = Auth::user();
+
+        $avgUser = DB::table('star_ratings')
+            ->select('star_ratings.user_id', DB::raw('avg(star)'))
+            ->where('star_ratings.user_id', '=', $user->id)
+            ->groupBy('star_ratings.user_id')
+            ->first();
+
+        return $avgUser;
     }
 }
