@@ -26,4 +26,8 @@ class starRating extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function freela(){
+        return $this->belongsTo(Freela::class);
+    }
 }

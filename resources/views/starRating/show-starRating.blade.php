@@ -43,7 +43,7 @@
 
                                     @endphp
 
-                                
+                              {{$starRating->first()}}
                                     <a href="{{route('stars.edit', $invite->id)}}">
                                         Avaliar
                                     </a>

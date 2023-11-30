@@ -11,6 +11,8 @@ class DisableButton extends Component
     public function clickButton()
     {
         $this->buttonClicked = true;
+        
+
     }
 
     public function render()

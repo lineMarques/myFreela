@@ -101,7 +101,7 @@ class FreelaController extends Controller
             ]);
         });
 
-        return Redirect::route('dashboard');
+        return view('');
     }
 
     public function destroy(Request $request, $id)

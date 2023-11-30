@@ -105,7 +105,7 @@
                                         @csrf
                                         <input type="hidden" name="freela" value="{{$freela->id}}">
                                         <input type="hidden" name="cargo" value="{{$freela->cargo}}">
-                                        @livewire('disable-button' )
+                                        <input type="button" value="teste" id="teste">
                                     </form>
                                 </td>
                                 <td class="px-6 py-4">

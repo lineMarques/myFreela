@@ -33,4 +33,8 @@ class Freela extends Model
         return $this->hasMany(Invite::class);
     }
 
+    public function starRating(){
+        return $this->hasOne(starRating::class);
+    }
+
 }
