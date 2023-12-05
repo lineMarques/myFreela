@@ -36,6 +36,7 @@ class StarRatingController extends Controller
             ->orWhere('confirmacao', 'Confirmada')
             ->get();
 
+        $maneger = $this->user->where('id', Auth::id())->first();
         $freelancers = $invites->map(function ($invite) {
             $freelancers =  $this->user->where('users.id', $invite->user_id)->get();
             $freelas = $this->freela->where('id', $invite->freela_id)->get();
@@ -44,7 +45,7 @@ class StarRatingController extends Controller
 
         $starRating = $this->starRating->all();
 
-        return view('starRating.show-starRating', compact('freelancers', 'invites', 'starRating'));
+        return view('starRating.show-starRating', compact('freelancers', 'invites', 'starRating', 'maneger'));
     }
 
     public function edit($id)
@@ -57,6 +58,7 @@ class StarRatingController extends Controller
 
     public function store(Request $request)
     {
+
         $user = $this->user->where('id', $request->user_id)->first();
         $user->rating()->create([
             'evaluator_user_id' => $request->evaluator_user_id,

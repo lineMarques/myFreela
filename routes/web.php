@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
 /* Routes Company */
 
-Route::middleware('auth', 'gerente', 'adm')->group(function () {
+Route::middleware('auth', 'gerente')->group(function () {
 
     Route::get('/dashboard', [CompanyCompany::class, 'index'])->name('dashboard');
     Route::get('/cadastrarEmpresa', [CompanyController::class, 'create'])->name('company.create');
@@ -54,7 +54,7 @@ Route::middleware('auth', 'gerente', 'adm')->group(function () {
 
 /* Routes Freelance */
 
-Route::middleware('auth', 'gerente', 'adm')->group(function () {
+Route::middleware('auth', 'gerente')->group(function () {
 
     Route::get('/dashboard', [FreelaController::class, 'index'])->name('dashboard');
     Route::get('/cadastrarFreela', [FreelaController::class, 'create'])->name('freela.create');
@@ -68,7 +68,7 @@ Route::middleware('auth', 'gerente', 'adm')->group(function () {
 
 /* Routes Invite */
 
-Route::middleware('auth', 'freelancer', 'adm')->group(function () {
+Route::middleware('auth', 'freelancer')->group(function () {
 
     Route::get('/dashboard/freelancer', [InviteController::class, 'create'])->name('dashboard.freelancer') ;
     Route::get('/convite/{id}', [InviteController::class, 'show'])->name('invite.show');
@@ -83,7 +83,7 @@ Route::middleware('auth', 'freelancer', 'adm')->group(function () {
 
 /* Routes Star Rating */
 
-Route::middleware('auth', 'gerente', 'adm')->group(function () {
+Route::middleware('auth', 'gerente')->group(function () {
 
     Route::get('avaliacao', [StarRatingController::class, 'show'])->name('stars.show');
     Route::get('avaliacao/{id}', [StarRatingController::class, 'edit'])->name('stars.edit');

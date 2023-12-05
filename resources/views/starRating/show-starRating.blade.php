@@ -29,9 +29,9 @@
                                 class="bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <th class="px-6 py-4">
                                     @if(empty($freelancer[0][0]->image->image))
-                                    <img class="w-20 h-20 mb-3 text-gray-400 rounded-full" src="/assets/img/no-photo.png">
+                                    <img class="w-14 h-14 mb-3 text-gray-400 rounded-full" src="/assets/img/no-photo.png">
                                     @else
-                                    <img class="w-20 h-20 mb-3 text-gray-400 rounded-full" src="{{ url("storage/{$freelancer[0][0]->image->image}") }}">
+                                    <img class="w-14 h-14 mb-3 text-gray-400 rounded-full" src="{{ url("storage/{$freelancer[0][0]->image->image}") }}">
                                     @endif
                                 </th>
                                 <td class="px-6 py-4">{{$freelancer[0][0]->name}}</td>
@@ -43,10 +43,19 @@
 
                                     @endphp
 
-                              {{$starRating->first()}}
-                                    <a href="{{route('stars.edit', $invite->id)}}">
+                                    @if ($invite->confirmacao  == 'Encerrada')
+
+                                    <a  class="font-medium text-blue-600 dark:text-blue-500
+                                    hover:underline" href="{{route('stars.edit', $invite->id)}}">
                                         Avaliar
                                     </a>
+
+                                    @else
+
+                                    {{'A vaga ainda não foi encerrada'}}
+
+                                    @endif
+
                                 </td>
 
                             </tr>

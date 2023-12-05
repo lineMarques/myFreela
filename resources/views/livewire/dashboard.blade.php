@@ -88,8 +88,9 @@
                                 <td class="px-6 py-4">{{$freela->cargo}}</td>
                                 <td class="px-6 py-4">{{$freela->valorFreela}}</td>
                                 <td class="px-6 py-4">
-                                    @if ($freela->status == true)
-                                    {{'Vaga preenchida'}}
+
+                                @if ($freela->status == 'Vaga Preenchida')
+                                    {{$freela->status}}
 
                                 <td class="px-6 py-4">
                                     <a href="{{route('info.show')}}" class="font-medium text-blue-600 dark:text-blue-500
@@ -97,15 +98,20 @@
                                         <p>Informações Freelancer</p>
                                     </a>
                                 </td>
+                                @endif
 
-                                @else
-                                {{'Não preenchida'}}
+                                @if ($freela->status == 'Encerrada')
+                                {{$freela->status}}
+                                @endif
+
+                                @if ($freela->status == 'Não preenchida')
+                                {{$freela->status}}
                                 <td class="px-6 py-4">
                                     <form action="{{route('freela.search')}}" method="post">
                                         @csrf
                                         <input type="hidden" name="freela" value="{{$freela->id}}">
                                         <input type="hidden" name="cargo" value="{{$freela->cargo}}">
-                                        <input type="button" value="teste" id="teste">
+                                        <x-primary-button>{{__('Enviar')}}</x-primary-button>
                                     </form>
                                 </td>
                                 <td class="px-6 py-4">
@@ -114,7 +120,6 @@
                                         hover:underline">Edit</a>
                                 </td>
                                 @endif
-                                </td>
 
 
                             </tr>

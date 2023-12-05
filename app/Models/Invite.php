@@ -17,10 +17,6 @@ class Invite extends Model
         'confirmacao',
     ];
 
-    protected $casts = [
-        
-    ];
-
     public function company()
     {
         return $this->belongsTo(Company::class);

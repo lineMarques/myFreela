@@ -3,7 +3,7 @@
 
 Complemente a sua renda com o freela que surgiu. Clique no botão e veja todas as informações!
 
-<x-mail::button :url="'http://myfreela.test/dashboard'">
+<x-mail::button :url="'http://myfreela.test/dashboard/freelancer'">
 Informações da vaga
 </x-mail::button>
 

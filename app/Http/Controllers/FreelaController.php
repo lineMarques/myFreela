@@ -85,11 +85,13 @@ class FreelaController extends Controller
 
     public function searchFreelancer(Request $request)
     {
+
         $this->vaga = $this->freela->where('id', $request->freela)->first();
         $listaFuncionarios = getFreelancer($request->cargo);
 
         $listaFuncionarios->each(function ($funcionario) {
             $funcionario = $this->user->where('id', $funcionario->user_id)->first();
+
 
             Mail::to($funcionario)->send(new InviteFreelancers($funcionario->email));
 
@@ -101,7 +103,7 @@ class FreelaController extends Controller
             ]);
         });
 
-        return view('');
+        return redirect('dashboard');
     }
 
     public function destroy(Request $request, $id)

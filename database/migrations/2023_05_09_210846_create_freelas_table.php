@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('cargo');
             $table->string('observacao');
             $table->string('valorFreela');
-            $table->boolean('status')->nullable()->default(null);
+            $table->string('status')->nullable()->default('Não preenchida');
             $table->timestamps();
         });
     }

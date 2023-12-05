@@ -68,19 +68,19 @@ $stars = avgUser();
 
                 <div class=" mt-8 stars flex flex-row-reverse justify-end">
 
-                    <input class="hidden peer" type="radio"  name="star" value="5" disabled {{ ($stars->avg == 5)? "checked" : "" }}>
+                    <input class="hidden peer" type="radio"  value="5" disabled {{ ($stars->avg == 5)? "checked" : "" }}>
                     <label for="star1" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
-                    <input class="hidden peer" type="radio" name="star" value="4" disabled {{ ($stars->avg < 5 ) && ($stars->avg >= 4 )? "checked" : "" }}>
+                    <input class="hidden peer" type="radio" value="4" disabled {{ ($stars->avg < 5 ) && ($stars->avg >= 4 )? "checked" : "" }}>
                     <label for="star2" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
-                    <input class="hidden peer" type="radio"  name="star" value="3" disabled {{ ($stars->avg < 4 ) && ($stars->avg >= 3 )? "checked" : "" }}>
+                    <input class="hidden peer" type="radio"   value="3" disabled {{ ($stars->avg < 4 ) && ($stars->avg >= 3 )? "checked" : "" }}>
                     <label for="star3" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
-                    <input class="hidden peer" type="radio"  name="star" value="2" disabled {{ ($stars->avg < 3 ) && ($stars->avg >= 2 )? "checked" : "" }}>
+                    <input class="hidden peer" type="radio"   value="2" disabled {{ ($stars->avg < 3 ) && ($stars->avg >= 2 )? "checked" : "" }}>
                     <label for="star4" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
-                    <input class="hidden peer" type="radio" i name="star" value="1" disabled {{ ($stars->avg < 2 ) && ($stars->avg >= 1 )? "checked" : "" }}>
+                    <input class="hidden peer" type="radio"  value="1" disabled {{ ($stars->avg < 2 ) && ($stars->avg >= 1 )? "checked" : "" }}>
                     <label for="star5" class="fas fa-star text-lg text-gray-300 peer-checked:text-yellow-500"></label>
 
                 </div>

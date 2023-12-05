@@ -4,7 +4,7 @@
         onclick="" @if ($buttonClicked == true)
         disabled
         @endif>
-        {{ $buttonClicked ? 'Enviar' : 'teste' }}
+        {{ $buttonClicked ? 'Convidando' : 'Enviar Convites' }}
     </button>
 </div>
 

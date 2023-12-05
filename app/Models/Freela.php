@@ -19,10 +19,6 @@ class Freela extends Model
         'status',
     ];
 
-    protected $casts = [
-        'status' => 'boolean',
-    ];
-
     public function company()
     {
         return $this->belongsTo(Company::class);

@@ -68,7 +68,7 @@ class InviteController extends Controller
             $freela = $this->freela->where('id', $this->inviteUser->freela_id)->first();
 
             $freela->update([
-                'status' => true,
+                'status' => 'Vaga Preenchida',
             ]);
 
             $this->inviteUser->update([
@@ -94,18 +94,23 @@ class InviteController extends Controller
 
         $invite = $this->invite->find($request->invite);
 
+        $freela = $this->freela->find($invite->freela_id)->first();
+
+        $freela->update([
+            'status' => 'Encerrada',
+        ]);
 
         $invite->update([
             'confirmacao' => 'Encerrada',
         ]);
 
-        return Redirect::route('dashboard');
+        return Redirect::route('dashboard.freelancer');
     }
 
     public function destroy($id)
     {
         $invite = $this->invite->find($id);
         $invite->delete();
-        return Redirect::route('dashboard');
+        return Redirect::route('dashboard.freelancer');
     }
 }
